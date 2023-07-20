@@ -1,0 +1,13 @@
+schema: https://localhost:7244/graphql/
+documents:
+  - './dungeon-of-trails-forum-client/src/app/api-interaction/GraphQl/queries/*.gql'
+  - './dungeon-of-trails-forum-client/src/app/api-interaction/GraphQl/mutations/*.gql'
+generates:
+  ./dungeon-of-trails-forum-client/src/app/api-interaction/GraphQl/schema.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      withHOC: false

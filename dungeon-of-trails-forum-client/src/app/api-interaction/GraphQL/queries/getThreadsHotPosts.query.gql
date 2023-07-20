@@ -1,0 +1,20 @@
+query GetThreadHotPosts($thread: String) {
+  GetThreadHotPosts(thread: $thread) {
+    id
+    postedAt
+    title
+    attachmentUrl
+    body
+    score
+    totalComment
+    totalReply
+    thread {
+      id
+      name
+    }
+    postedUser {
+      name
+      email
+    }
+  }
+}

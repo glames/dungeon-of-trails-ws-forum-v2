@@ -1,0 +1,3 @@
+mutation DeletePost($postId: String) {
+  DeletePost(postId: $postId)
+}

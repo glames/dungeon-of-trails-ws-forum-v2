@@ -1,0 +1,3 @@
+mutation UploadPost($threadId: String, $content: String, $postTitle: String) {
+  UploadPost(threadId: $threadId, content: $content, postTitle: $postTitle)
+}

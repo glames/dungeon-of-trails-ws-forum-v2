@@ -1,0 +1,68 @@
+.list {
+  li > div:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    margin: 0px 20px;
+  }
+
+  li {
+    display: block;
+    padding: 10px 0px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    background-color: rgb(243, 243, 243);
+    position: relative;
+    div {
+      display: inline-block;
+      vertical-align: top;
+      img {
+        width: 100%;
+      }
+    }
+    .title {
+      color: #8dbc20;
+    }
+    .title:hover {
+      color: #abd83f;
+      cursor: pointer;
+    }
+  }
+
+  li > div:nth-child(2) {
+    width: calc(100% - 80px);
+    .title {
+      font-weight: bold;
+    }
+  }
+
+  .author {
+    font-style: italic;
+  }
+
+  .postedDate {
+    float: right;
+    padding: 0px 10px;
+  }
+
+  .postInfo {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+.commentCount {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.reloadButton {
+  text-align: center;
+  * {
+    height: 15px;
+  }
+}
+
+.reloadButton > *:hover {
+  cursor: pointer;
+  height: 20px;
+}

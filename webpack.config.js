@@ -1,9 +1,12 @@
-const { composePlugins, withNx } = require('@nx/webpack');
-const { withReact } = require('@nx/react');
+module.exports = {
+  // Other Webpack configuration options
 
-// Nx plugins for webpack.
-module.exports = composePlugins(withNx(), withReact(), (config) => {
-  // Update the webpack config as needed here.
-  // e.g. `config.plugins.push(new MyPlugin())`
-  return config;
-});
+  resolve: {
+    fallback: {
+      stream: require.resolve('stream-browserify'),
+      crypto: require.resolve('crypto-browserify'),
+      net: require.resolve('net-browserify'), // If needed
+      tls: require.resolve('tls-browserify'), // If needed
+    },
+  },
+};

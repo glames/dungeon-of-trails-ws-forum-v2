@@ -1,0 +1,11 @@
+mutation UserLogin($Email: String, $Password: String) {
+  UserLogin(input: { Email: $Email, Password: $Password }) {
+    accessToken
+    user {
+      id
+      email
+      name
+      avatarUrl
+    }
+  }
+}

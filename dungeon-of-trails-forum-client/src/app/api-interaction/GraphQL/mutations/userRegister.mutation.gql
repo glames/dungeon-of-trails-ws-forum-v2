@@ -1,0 +1,15 @@
+mutation UserRegister(
+  $dob: DateTime
+  $email: String
+  $password: String
+  $name: String
+  $gender: Int
+) {
+  UserRegister(
+    dob: $dob
+    email: $email
+    gender: $gender
+    name: $name
+    password: $password
+  )
+}

@@ -1,0 +1,31 @@
+query GetUserProfile($userId: String) {
+  GetUserProfile(userId: $userId) {
+    id
+    name
+    dob
+    gender
+    description
+    email
+    avatarUrl
+    comments {
+      id
+      body
+      parentId
+      commentTime
+      postId
+    }
+    posts {
+      id
+      title
+      postedAt
+      score
+      totalComment
+      totalReply
+      thread {
+        id
+        name
+        description
+      }
+    }
+  }
+}

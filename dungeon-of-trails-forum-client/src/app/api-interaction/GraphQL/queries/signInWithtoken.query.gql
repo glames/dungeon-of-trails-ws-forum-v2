@@ -1,0 +1,11 @@
+query SignInWithToken {
+  SignInWithToken {
+    name
+    id
+    dob
+    gender
+    description
+    email
+    avatarUrl
+  }
+}

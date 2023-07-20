@@ -1,0 +1,64 @@
+@import "utils/variables";
+
+:root {
+    --theme-deafult: #8DBC20;
+    --theme-primary: #7366ff;
+    --theme-secondary: #f73164;
+}
+
+// *** base ***
+@import "base/reset";
+@import "base/typography";
+
+// *** layout ***
+
+@import "layout/footer";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/search";
+@import "layout/sidebar";
+@import "layout/rtl";
+@import "layout/box-layout";
+
+//  *** components ***
+@import "components/according";
+@import "components/alert";
+@import "components/avatars";
+@import "components/badge";
+@import "components/bookmark";
+@import "components/breadcrumb";
+@import "components/builders";
+
+@import "components/buttons";
+
+@import "components/card";
+// @import "components/color";
+@import "components/datepicker";
+@import "components/dropdown";
+@import "components/datatable";
+@import "components/form-builder";
+@import "components/form-input";
+@import "components/form-wizard";
+@import "components/forms";
+@import "components/form_builder-2";
+@import "components/icons";
+@import "components/list";
+@import "components/loader";
+@import "components/popover";
+@import "components/print";
+@import "components/radio";
+@import "components/ribbon";
+@import "components/switch";
+@import "components/tab";
+@import "components/table";
+@import "components/touchspin";
+@import "components/tour";
+@import "components/typeahead-search";
+@import "components/react-plugin";
+// @import "components/slick.scss";
+// @import "components/slick-theme.scss";
+@import "pages/dashboard_2";
+@import "pages/dashboard_default";
+
+
+

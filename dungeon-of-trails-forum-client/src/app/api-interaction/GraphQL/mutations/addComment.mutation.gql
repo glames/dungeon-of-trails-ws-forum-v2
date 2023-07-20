@@ -1,0 +1,3 @@
+mutation AddComment($body: String, $parentId: String, $postId: String) {
+  AddComment(body: $body, parentId: $parentId, postId: $postId)
+}

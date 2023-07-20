@@ -1,0 +1,145 @@
+.buttonStyle {
+  background-color: grey;
+  color: white;
+  width: 70%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.SubmitComment {
+  background-color: rgb(84, 154, 60);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+.CommentContainer {
+  min-width: 270px;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  img {
+    width: 100%;
+  }
+}
+
+.CommentInfoContainer {
+  display: block;
+  padding: 10px 30px;
+  div {
+    display: inline-block;
+    div {
+      display: block;
+    }
+  }
+  .CommentInfo {
+    margin-left: 20px;
+    div {
+      display: inline-block;
+    }
+    .PostAuthor {
+      a {
+        color: gray;
+        text-decoration: underline;
+      }
+    }
+  }
+  .PostTitle {
+    margin-top: 30px;
+  }
+}
+.commentBody {
+  display: block;
+  padding: 10px 30px;
+}
+
+.EachComment {
+  margin: 20px 10px;
+}
+
+.EachReply {
+  margin: 20px 10px;
+  color: green;
+  .CommentInfoContainer {
+    border-right: 2px solid gray;
+  }
+}
+.EachReply:hover {
+  .CommentInfoContainer {
+    border-right: 2px solid rgb(117, 209, 87);
+  }
+}
+
+.ShowReplyButton {
+  margin-left: 30px;
+  border: none;
+  padding: 3px 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.AuthorAvtContainer {
+  width: 40px;
+  height: 40px;
+  vertical-align: top;
+}
+
+.ReplyContainer {
+  min-width: 270px;
+  width: 100%;
+  margin: auto;
+  padding: 0px 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+.replyEditor {
+  margin-top: 50px;
+}
+
+.submitReply {
+  background-color: rgb(84, 154, 60);
+  color: white;
+  border: none;
+  padding: 6px 20px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+.commentListTitle {
+  border-radius: 50px 50px 10px 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.success_modal {
+  font-family: cursive;
+  z-index: 99999;
+  width: 250px;
+  position: fixed;
+  bottom: 10%;
+  right: 2%;
+  color: black;
+  font-weight: bold;
+  font-family: cursive;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+  .success_modal_content {
+    padding: 5px 15px;
+  }
+  button {
+    background-color: transparent;
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    float: right;
+  }
+}

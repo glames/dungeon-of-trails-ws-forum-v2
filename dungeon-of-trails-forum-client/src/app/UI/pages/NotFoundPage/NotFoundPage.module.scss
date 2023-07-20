@@ -1,0 +1,301 @@
+.error-container {
+  text-align: center;
+  font-size: 106px;
+  font-weight: 800;
+  margin: 30px 15px;
+}
+.error-container > span {
+  display: inline-block;
+  position: relative;
+}
+.error-container > span.four {
+  width: 136px;
+  height: 35px;
+  z-index: 1;
+  border-radius: 999px;
+  animation: NotFound_shadow 4s infinite;
+  background: linear-gradient(
+      140deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.07) 43%,
+      transparent 44%,
+      transparent 100%
+    ),
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.06) 41%,
+      rgba(0, 0, 0, 0.07) 76%,
+      transparent 77%,
+      transparent 100%
+    ),
+    linear-gradient(to right, #ddffbb, #c7e9b0, #b3c99c, #a4bc92);
+}
+.error-container > span.four:before,
+.error-container > span.four:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 999px;
+}
+.error-container > span.four:before {
+  width: 35px;
+  height: 156px;
+  z-index: 1;
+  left: 60px;
+  bottom: -43px;
+  animation: NotFound_shadow 2s infinite;
+  background: linear-gradient(
+      128deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.07) 40%,
+      transparent 41%,
+      transparent 100%
+    ),
+    linear-gradient(
+      116deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.07) 50%,
+      transparent 51%,
+      transparent 100%
+    ),
+    linear-gradient(to top, #ddffbb, #c7e9b0, #b3c99c, #a4bc92);
+}
+.error-container > span.four:after {
+  width: 137px;
+  height: 35px;
+  z-index: 1;
+  transform: rotate(-49.5deg);
+  left: -25px;
+  bottom: 40px;
+  animation: NotFound_shadow 1s infinite;
+  background: linear-gradient(to right, #ddffbb, #c7e9b0, #b3c99c, #a4bc92);
+}
+
+.error-container > span.zero {
+  vertical-align: text-top;
+  width: 156px;
+  height: 156px;
+  border-radius: 999px;
+  background: linear-gradient(
+      -45deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 50%,
+      transparent 51%,
+      transparent 100%
+    ),
+    linear-gradient(to top right, #ddffbb, #c7e9b0, #b3c99c, #a4bc92);
+  overflow: hidden;
+  animation: bgshadow 5s infinite;
+}
+.error-container > span.zero:before {
+  content: '';
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+  width: 90px;
+  height: 90px;
+  background-color: transparent;
+  left: 0px;
+  bottom: 0px;
+  background: linear-gradient(
+      95deg,
+      transparent 0%,
+      transparent 8%,
+      rgba(0, 0, 0, 0.07) 9%,
+      transparent 50%,
+      transparent 100%
+    ),
+    linear-gradient(
+      85deg,
+      transparent 0%,
+      transparent 19%,
+      rgba(0, 0, 0, 0.05) 20%,
+      rgba(0, 0, 0, 0.07) 91%,
+      transparent 92%,
+      transparent 100%
+    );
+}
+.error-container > span.zero:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 999px;
+  width: 70px;
+  height: 70px;
+  left: 43px;
+  bottom: 43px;
+  background: #fdfaf5;
+  box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.screen-reader-text {
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+@keyframes bgshadow {
+  0% {
+    box-shadow: inset -160px 160px 0px 5px rgba(0, 0, 0, 0.4);
+  }
+  45% {
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+  }
+  55% {
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: inset 160px -160px 0px 5px rgba(0, 0, 0, 0.4);
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 15px;
+}
+.zoom-area {
+  max-width: 600px;
+  margin: 10px auto 10px;
+  font-weight: 900;
+  font-size: 36px;
+  text-align: center;
+  line-height: 50px;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+}
+.link-container {
+  text-align: center;
+  font-size: 15px;
+  display: block;
+  margin-right: 5px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  color: #000;
+  margin-bottom: 50px;
+}
+.link-container > p > a {
+  text-decoration: underline;
+}
+.link-container > p > a:hover {
+  text-decoration: none;
+}
+
+a.more-link {
+  font-size: 15px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+.btn-go-home {
+  padding: 15px 20px;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  font-size: 16px;
+  text-transform: capitalize;
+  transition: all 0.5s;
+}
+.btn-go-home:hover {
+  background-color: var(--primary) !important;
+  color: #fffaf4 !important;
+}
+@media (max-width: 575.98px) {
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 15px;
+    margin-top: 50px;
+  }
+  .error-container > span.four {
+    width: 90px;
+    height: 28px;
+  }
+  .error-container > span.four:before {
+    width: 28px;
+    height: 103px;
+    left: 41px;
+    bottom: -31px;
+  }
+  .error-container > span.four:after {
+    width: 90px;
+    height: 28px;
+    left: -11px;
+    bottom: 23px;
+  }
+  .error-container > span.zero {
+    margin-bottom: 15px;
+    width: 103px;
+    height: 103px;
+  }
+  .error-container > span.zero:after {
+    width: 46px;
+    height: 46px;
+    left: 28px;
+    bottom: 28px;
+  }
+  .zoom-area {
+    margin: 10px auto 10px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    line-height: 35px;
+    padding: 0 15px;
+    font-weight: 900;
+  }
+  .link-container {
+    padding: 0 15px;
+  }
+}
+.bg-logo {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.logo {
+  width: 9vh;
+  border-radius: 9999%;
+}
+.error-not-found {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+@keyframes NotFound_shadow {
+  0% {
+    box-shadow: inset -160px 160px 0 5px rgba(0, 0, 0, 0.4);
+  }
+
+  45% {
+    box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+  55% {
+    box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: inset 160px -160px 0 5px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.nut__404 {
+  position: absolute;
+  top: -304%;
+  left: -30%;
+  width: 210px;
+  height: 210px;
+  color: #8fc59c;
+  opacity: 0.3;
+}
+
+.mr-15 {
+  margin-right: -15px;
+}

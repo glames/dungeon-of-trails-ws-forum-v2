@@ -1,0 +1,64 @@
+.UploadPostContainer {
+  position: fixed;
+  width: 80%;
+  z-index: 2;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 270px;
+  height: fit-content;
+  top: 5%;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  left: 0;
+  right: 0;
+  .modalOverlay {
+    padding: 30px 40px;
+  }
+}
+
+.submitButton {
+  background-color: rgb(84, 154, 60);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.closeButton {
+  background-color: rgb(198, 35, 81);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.success_modal {
+  font-family: cursive;
+  z-index: 99999;
+  width: 250px;
+  position: fixed;
+  bottom: 10%;
+  right: 2%;
+  color: black;
+  font-weight: bold;
+  font-family: cursive;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+  .success_modal_content {
+    padding: 5px 15px;
+  }
+  button {
+    background-color: transparent;
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    float: right;
+  }
+}

@@ -1,0 +1,57 @@
+.ThreadTopContainer {
+  height: 250px;
+  width: 100%;
+  background-color: red;
+  color: white;
+  margin-bottom: 50px;
+  background-image: url('../../../../assets/images/banner/threads-top2.png');
+  h1 {
+    text-align: center;
+    padding-top: 100px;
+    font-size: 40px;
+    text-transform: uppercase;
+  }
+}
+
+.PostList {
+  width: 70%;
+  margin: auto;
+  .tabs {
+    display: block;
+    width: 100%;
+    div:nth-child(1) {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+    div:nth-child(2) {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    div {
+      background-color: rgb(84, 154, 60);
+      padding: 10px 0px;
+      font-family: cursive;
+      font-weight: bold;
+      width: 50%;
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      display: inline-block;
+    }
+    div:hover {
+      background-color: rgb(155, 202, 140);
+    }
+  }
+}
+
+.reloadButton {
+  text-align: center;
+  * {
+    height: 15px;
+  }
+}
+
+.reloadButton > *:hover {
+  cursor: pointer;
+  height: 20px;
+}

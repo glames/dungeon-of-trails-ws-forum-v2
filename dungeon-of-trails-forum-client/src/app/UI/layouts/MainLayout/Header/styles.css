@@ -1,0 +1,10 @@
+.success_msg {
+  border-color: green !important;
+  background-color: #0fc47d !important;
+  color: white !important;
+}
+.error_msg {
+  background-color: #f76961 !important;
+  color: white !important;
+  border-color: red !important;
+}

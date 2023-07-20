@@ -1,0 +1,42 @@
+.text-center {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.welcome_text {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.slider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; // Điều chỉnh chiều cao của slider tùy ý
+}
+
+.hihih {
+  width: 100%;
+}
+
+.slicktrack {
+  display: flex !important;
+}
+
+.intro_text {
+  margin-top: 10px;
+}
+
+.availableOn {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+  img {
+    margin: 10px 20px;
+    width: 300px;
+    display: inline-block;
+  }
+  margin-bottom: 100px;
+}
+
+.slidercont {
+  text-align: center;
+}

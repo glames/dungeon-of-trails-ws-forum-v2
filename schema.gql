@@ -1,0 +1,23 @@
+schema {
+  query: QueryHandler
+  mutation: MutationHandler
+}
+
+type QueryHandler {
+  Welcome: String
+}
+
+type MutationHandler {
+  UserLogin(login: LoginInput, input: LoginInput!): String
+}
+
+input LoginInput {
+  Email: String
+  Password: String
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}

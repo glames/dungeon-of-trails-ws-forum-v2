@@ -1,0 +1,51 @@
+query GetPostDetail($postId: String, $commentPageNo: Int) {
+  GetPostDetail(postId: $postId, commentPageNo: $commentPageNo) {
+    id
+    title
+    body
+    attachmentUrl
+    score
+    totalComment
+    totalReply
+    postedAt
+    postedUser {
+      id
+      name
+      email
+      description
+      gender
+      avatarUrl
+    }
+    thread {
+      id
+      name
+      description
+    }
+    comments {
+      id
+      body
+      parentId
+      commentTime
+      commentUser {
+        id
+        name
+        description
+        gender
+        avatarUrl
+      }
+      inverseParent {
+        id
+        body
+        parentId
+        commentTime
+        commentUser {
+          id
+          name
+          description
+          gender
+          avatarUrl
+        }
+      }
+    }
+  }
+}
