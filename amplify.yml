@@ -8,7 +8,7 @@ frontend:
       commands:
         - npx nx build
   artifacts:
-    baseDirectory: dist
+    baseDirectory: dungeon-of-trails-forum-client/dist
     files:
       - '**/*'
   cache:
