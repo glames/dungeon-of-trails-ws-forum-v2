@@ -56,7 +56,7 @@
           "buildTarget": "dungeon-of-trails-ws:build:development"
         },
         "production": {
-          "buildTarget": "dungeon-of-trails-ws:build:production",
+          "buildTarget": "dungeon-of-trails-forum-client:production",
           "hmr": false
         }
       }
