@@ -1,12 +1,31 @@
-module.exports = {
-  // Other Webpack configuration options
+const path = require('path');
 
-  resolve: {
-    fallback: {
-      stream: require.resolve('stream-browserify'),
-      crypto: require.resolve('crypto-browserify'),
-      net: require.resolve('net-browserify'), // If needed
-      tls: require.resolve('tls-browserify'), // If needed
+module.exports = (env, argv) => {
+  const isDevelopment = argv.mode === 'development';
+
+  return {
+    ...env,
+    mode: 'development',
+    entry: {
+      main: './src/main.tsx',
     },
-  },
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: 'ts-loader',
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js'],
+    },
+    devtool: isDevelopment ? 'source-map' : false,
+    // Other configurations...
+  };
 };
