@@ -4,11 +4,7 @@
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "module": "commonjs",
-    "resolveJsonModule": true,
-    "target": "esnext",
-    "moduleResolution": "node",
+    "strict": true
   },
   "files": [],
   "include": [],
