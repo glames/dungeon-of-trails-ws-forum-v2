@@ -1,21 +1,16 @@
 version: 1
-env:
-  variables:
-    key: production
 frontend:
-  buildpath:
   phases:
     preBuild:
       commands:
-        - cd react-app
-        - npm ci
+        - npm install
     build:
       commands:
         - npx nx build
   artifacts:
-    discard-paths: yes
-    baseDirectory: ./dungeon-of-trails-forum-client/dist
+    baseDirectory: dist
+    files:
+      - '**/*'
   cache:
     paths:
-      - path
-      - path
+      - node_modules/**/*
