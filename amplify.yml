@@ -1,4 +1,4 @@
-version: 2
+version: 3
 frontend:
   phases:
     preBuild:
@@ -6,7 +6,7 @@ frontend:
         - npm install
     build:
       commands:
-        - npx nx build
+        - npx nx build dungeon-of-trails-forum-client
   artifacts:
     baseDirectory: dungeon-of-trails-forum-client
     files:
