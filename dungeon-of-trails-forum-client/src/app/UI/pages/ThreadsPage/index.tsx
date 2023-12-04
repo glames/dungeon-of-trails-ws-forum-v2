@@ -6,6 +6,7 @@ import styles from './Threads.module.scss';
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 const ThreadsPage = () => {
   const { something } = useParams(); // Lấy giá trị "something" từ URL path

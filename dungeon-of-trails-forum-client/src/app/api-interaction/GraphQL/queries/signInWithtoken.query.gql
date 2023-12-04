@@ -7,5 +7,6 @@ query SignInWithToken {
     description
     email
     avatarUrl
+    isAdmin
   }
 }

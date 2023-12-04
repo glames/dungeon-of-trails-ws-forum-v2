@@ -26,8 +26,10 @@ const LeftBar = (props: any) => {
   }
 
   useEffect(() => {
-    const ignoreClick_On_Out_side_Element = document.getElementById('out_side_click');
-    const ignoreClick_On_Main_Nav_Element = document.getElementById('sidebar-menu');
+    const ignoreClick_On_Out_side_Element =
+      document.getElementById('out_side_click');
+    const ignoreClick_On_Main_Nav_Element =
+      document.getElementById('sidebar-menu');
     document.addEventListener('click', function (event) {
       const isClickOutSideElement = ignoreClick_On_Out_side_Element?.contains(
         event.target as Node
@@ -54,18 +56,23 @@ const LeftBar = (props: any) => {
     if (width <= 991) {
       setBonusUI(false);
       document.querySelector('.page-header')!.className = 'page-header';
-      document.querySelector('.sidebar-wrapper')!.className = 'sidebar-wrapper ';
+      document.querySelector('.sidebar-wrapper')!.className =
+        'sidebar-wrapper ';
     } else {
       if (toggle) {
         setSidebartoggle(!toggle);
-        document.querySelector('.page-header')!.className = 'page-header close_icon';
+        document.querySelector('.page-header')!.className =
+          'page-header close_icon';
         document.querySelector('.sidebar-wrapper')!.className =
           'sidebar-wrapper close_icon ';
-        document.querySelector('.mega-menu-container')?.classList.remove('d-block');
+        document
+          .querySelector('.mega-menu-container')
+          ?.classList.remove('d-block');
       } else {
         setSidebartoggle(!toggle);
         document.querySelector('.page-header')!.className = 'page-header';
-        document.querySelector('.sidebar-wrapper')!.className = 'sidebar-wrapper ';
+        document.querySelector('.sidebar-wrapper')!.className =
+          'sidebar-wrapper ';
       }
     }
   };
@@ -80,40 +87,41 @@ const LeftBar = (props: any) => {
 
   return (
     <Fragment>
-      <div
-        className='header-logo-wrapper'
-        id='out_side_click'
-      >
-        <div className='logo-wrapper'>
+      <div className="header-logo-wrapper" id="out_side_click">
+        <div className="logo-wrapper">
           <Link to={`/dashboard`}>
             <img
-              className='img-fluid for-light'
+              className="img-fluid for-light"
               src={require('~/assets/images/logo/logo.png')}
-              alt=''
+              alt=""
             />
             <img
-              className='img-fluid for-dark'
+              className="img-fluid for-dark"
               src={require('~/assets/images/logo/logo_dark.png')}
-              alt=''
+              alt=""
             />
           </Link>
         </div>
         <div
-          className='toggle-sidebar'
+          className="toggle-sidebar"
           onClick={() => responsive_openCloseSidebar(sidebartoggle)}
-          style={window.innerWidth <= 991 ? { display: 'block' } : { display: 'none' }}
+          style={
+            window.innerWidth <= 991
+              ? { display: 'block' }
+              : { display: 'none' }
+          }
         >
           <Sliders
-            className='status_toggle middle sidebar-toggle'
-            id='sidebar-toggle'
+            className="status_toggle middle sidebar-toggle"
+            id="sidebar-toggle"
           />
         </div>
       </div>
-      <Col className='left-header horizontal-wrapper pl-0'>
+      <Col className="left-header horizontal-wrapper pl-0">
         <div
-          className='slick-slide'
-          data-slick-index='0'
-          aria-hidden='true'
+          className="slick-slide"
+          data-slick-index="0"
+          aria-hidden="true"
         ></div>
       </Col>
     </Fragment>

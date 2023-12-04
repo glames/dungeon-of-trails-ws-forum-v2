@@ -3,6 +3,7 @@ import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 //import { AuthResponse } from '../graphql/generated/schema';
 import { RootState } from '../store';
 import {
+  setIsAdmin,
   setUserAvatarURL,
   setUserEmail,
   setUserId,
@@ -16,6 +17,7 @@ const CurrentUserSlice = createSlice({
     userId: '',
     name: '',
     avatarUrl: '',
+    isAdmin: 0,
   },
   reducers: {
     setCurrentUser: (state, { payload }: PayloadAction<any>) => {
@@ -23,10 +25,12 @@ const CurrentUserSlice = createSlice({
       state.userId = payload.userId;
       state.name = payload.name;
       state.avatarUrl = payload.avatarUrl;
+      state.isAdmin = payload.isAdmin;
       setUserEmail(payload.userEmail);
       setUserId(payload.userId);
       setUserName(payload.name);
       setUserAvatarURL(payload.avatarUrl);
+      setIsAdmin(payload.isAdmin);
     },
   },
 });

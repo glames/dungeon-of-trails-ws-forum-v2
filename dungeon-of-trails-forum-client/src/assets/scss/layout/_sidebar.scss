@@ -1267,54 +1267,55 @@
               text-align: right;
               display: block;
             }
-
-            &:hover {
-              width: 280px;
-              transition: all 0.3s ease;
-
-              .badge {
-                opacity: 1;
-                width: auto;
+            @media screen and (min-width: 800px) {
+              &:hover {
+                width: 280px;
                 transition: all 0.3s ease;
-              }
 
-              .sidebar-main {
-                .sidebar-links {
-                  > li {
-                    max-width: unset;
-                    margin: initial;
-                    transition: all 0.3s ease;
+                .badge {
+                  opacity: 1;
+                  width: auto;
+                  transition: all 0.3s ease;
+                }
 
-                    .sidebar-submenu {
-                      a {
-                        display: block;
-                      }
-                    }
-
-                    > a {
-                      padding: 12px 15px;
+                .sidebar-main {
+                  .sidebar-links {
+                    > li {
+                      max-width: unset;
+                      margin: initial;
                       transition: all 0.3s ease;
 
-                      span {
-                        display: inline-block;
+                      .sidebar-submenu {
+                        a {
+                          display: block;
+                        }
+                      }
+
+                      > a {
+                        padding: 12px 15px;
+                        transition: all 0.3s ease;
+
+                        span {
+                          display: inline-block;
+                        }
                       }
                     }
                   }
                 }
-              }
 
-              .sidebar-main-title {
-                opacity: 1;
-                display: block !important;
-                transition: all 0.3s ease;
-              }
+                .sidebar-main-title {
+                  opacity: 1;
+                  display: block !important;
+                  transition: all 0.3s ease;
+                }
 
-              .logo-wrapper {
-                display: block;
-              }
+                .logo-wrapper {
+                  display: block;
+                }
 
-              .logo-icon-wrapper {
-                display: none;
+                .logo-icon-wrapper {
+                  display: none;
+                }
               }
             }
 
@@ -3213,6 +3214,11 @@
       font-size: 20px;
     }
   }
+
+  .page-body,
+  .footer {
+    margin-left: 0 !important;
+  }
 }
 .eachNoti:hover {
   background-color: rgb(168, 218, 130);
@@ -3221,3 +3227,18 @@
 /**=====================
     78. Sidebar CSS Ends
 ==========================**/
+
+@media screen and (max-width: 800px) {
+  .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper {
+    display: none;
+  }
+  .page-wrapper .page-header {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .page-wrapper.compact-wrapper .page-body-wrapper .page-body {
+    width: 100% !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+}

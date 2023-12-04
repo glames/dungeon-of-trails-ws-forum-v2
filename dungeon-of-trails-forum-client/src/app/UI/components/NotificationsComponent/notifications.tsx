@@ -134,6 +134,7 @@ const NotificationComponent = () => {
               </p>
             </li>
           ))}
+        <li></li>
       </ul>
     </li>
   );

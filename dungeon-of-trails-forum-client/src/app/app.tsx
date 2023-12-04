@@ -14,11 +14,13 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import fetch from 'cross-fetch';
 
 import { RouteType, publicRoutes, privateRoutes } from './routes';
 import MainLayout from './UI/layouts/MainLayout';
 import Loader from './UI/components/Loader';
 import { store } from './redux-tk/store';
+
 import {
   getAccessToken,
   getRefreshToken,
@@ -36,7 +38,8 @@ import ProtectedRoute from './UI/components/ProtectedRoute';
 import withAuthentication from './UI/components/WithAuthenticationComponent';
 
 const httpLink = createHttpLink({
-  uri: `https://localhost:${7244}/graphql/`,
+  uri: `https://localhost:${7017}/graphql`,
+  fetch,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -44,6 +47,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
+      'GraphQL-preflight': 1,
       authorization: `bearer ${token}`,
     },
   };
@@ -106,7 +110,6 @@ const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <Provider store={store}>
-        <Loader />
         <Routes>
           {getRoutes(privateRoutes)}
           {getRoutes(publicRoutes)}

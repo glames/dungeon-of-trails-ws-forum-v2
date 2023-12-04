@@ -1,0 +1,4 @@
+query CheckVotedPost($postId: String) {
+  CheckVotedPost(postId: $postId)
+}
+  

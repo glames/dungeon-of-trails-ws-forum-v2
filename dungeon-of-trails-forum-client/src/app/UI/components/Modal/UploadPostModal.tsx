@@ -45,6 +45,21 @@ const UploadPostModal = ({ showUploadModal }: { showUploadModal: boolean }) => {
     console.log(data.content);
     console.log(data.postTitle);
     console.log(selectedThreadId);
+    if (
+      data.content == null ||
+      data.postTitle == null ||
+      selectedThreadId == null
+    ) {
+      setShowSuccessModal(true);
+      setSuccessClass('error_msg');
+      setSuccessMessage('Do not leave any field blank!');
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        setSuccessMessage('');
+        setSuccessClass('');
+      }, 2000);
+      return;
+    }
     try {
       const response = await uploadPost({
         variables: {
@@ -105,13 +120,13 @@ const UploadPostModal = ({ showUploadModal }: { showUploadModal: boolean }) => {
                 >
                   <option value="">Select a thread</option>{' '}
                   {/* Thêm một option trống nếu muốn có lựa chọn mặc định */}
-                  <option value="e0832064-ca1f-4a19-aa19-30ea177ea49b">
+                  <option value="ddb885ef-b1fd-464f-9df7-e04481e0486a">
                     Discussion
                   </option>
-                  <option value="56d5f554-78c7-4b83-9d1d-41602a842068">
+                  <option value="db4d3314-8079-4000-bc99-b28b755f94bd">
                     News
                   </option>
-                  <option value="281eaa62-ebdf-4b56-8a1f-42d696f68a48">
+                  <option value="9f6997f8-4b28-4989-84e9-3b14c5a7294a">
                     Tips
                   </option>
                 </select>

@@ -20,26 +20,24 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   dispatch(
     setTokenForUser({
       accessToken: getAccessToken(),
-      refreshToken: "",
+      refreshToken: '',
     })
   );
-  
+
   return (
     <>
       {/* // <ProtectedRoute> */}
       <TapTop />
-      <div
-        className='page-wrapper compact-wrapper'
-        id='pageWrapper'
-      >
+      <div className="page-wrapper compact-wrapper" id="pageWrapper">
         <Header />
-        <div className='page-body-wrapper'>
+        <div className="page-body-wrapper">
           <Sidebar />
-          <div className='page-body'>{children}</div>
+          <div className="page-body">{children}</div>
           <Footer />
         </div>
       </div>
       <ToastContainer />
+
       {/* // </ProtectedRoute> */}
     </>
   );

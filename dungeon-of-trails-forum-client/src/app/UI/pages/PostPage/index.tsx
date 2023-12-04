@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import CommentsArea from '../../components/CommentsAreaComponent/CommentsArea';
 import {
+  useCheckVotedPostQuery,
   useDeletePostMutation,
   useGetPostDetailQuery,
+  useVotePostMutation,
 } from '~/app/api-interaction/GraphQL/schema';
 import styles from './Posts.module.scss';
 import { formatPostedAt } from '../ThreadsPage/SubTab';
@@ -39,6 +41,7 @@ const PostPage = () => {
 
   const userEmail = getUserEmail();
   const userId = getUserId();
+
   const {
     loading,
     error,
@@ -51,8 +54,30 @@ const PostPage = () => {
     },
     fetchPolicy: 'network-only', // Thêm fetchPolicy: 'network-only'
   });
+  const {
+    error: checkVotedError,
+    data: isVoted,
+    refetch: refetchCheckVoted,
+  } = useCheckVotedPostQuery({
+    variables: {
+      postId: postId,
+    },
+    fetchPolicy: 'network-only', // Thêm fetchPolicy: 'network-only'
+  });
+  const [VotePost] = useVotePostMutation({
+    variables: {
+      postId: postId,
+    },
+    fetchPolicy: 'network-only', // Thêm fetchPolicy: 'network-only'
+  });
 
   const [DeletePost] = useDeletePostMutation();
+  const [voted, setVoted] = useState(true);
+  const [newTotalPostVote, setNewTotalPostVote] = useState(0);
+  useEffect(() => {
+    setVoted(isVoted?.CheckVotedPost || false);
+    setNewTotalPostVote(postData?.GetPostDetail?.totalPostVote || 0);
+  }, [postData, isVoted]);
 
   const totalComments = postData?.GetPostDetail?.totalComment || 0;
 
@@ -65,6 +90,20 @@ const PostPage = () => {
   }
   const handlePageChange = (newPageNo: any) => {
     navigate(`/Posts/${postId}/${newPageNo}`);
+  };
+
+  const onVoteClick = async () => {
+    try {
+      await VotePost();
+      if (voted) {
+        setNewTotalPostVote(newTotalPostVote - 1);
+      } else {
+        setNewTotalPostVote(newTotalPostVote + 1);
+      }
+      setVoted(!voted); // Đảo ngược trạng thái vote
+    } catch (error) {
+      console.error('Failed to vote post', error);
+    }
   };
 
   const renderPageOptions = () => {
@@ -130,7 +169,14 @@ const PostPage = () => {
         <div className={styles.PostContainer}>
           <div className={styles.PostInfoContainer}>
             <div className={styles.AuthorAvtContainer}>
-              <img src="/assets/images/avtar/default-avatar.png" alt="avatar" />
+              <img
+                src={
+                  postData?.GetPostDetail?.postedUser?.avatarUrl ||
+                  '/assets/images/avtar/default-avatar.png'
+                }
+                style={{ borderRadius: '50%' }}
+                alt="avatar"
+              />
             </div>
             <div className={styles.PostInfo}>
               <div className={styles.PostThread}>
@@ -186,6 +232,22 @@ const PostPage = () => {
               __html: postData?.GetPostDetail?.body || '',
             }}
           />
+          <div className={styles.voteButton}>
+            {voted ? (
+              <img
+                src="/assets/images/loved.png"
+                onClick={() => onVoteClick()}
+                alt=""
+              />
+            ) : (
+              <img
+                src="/assets/images/love.png"
+                onClick={() => onVoteClick()}
+                alt=""
+              />
+            )}
+            <span>{newTotalPostVote}</span>
+          </div>
         </div>
         <CommentsArea
           comments={postData?.GetPostDetail?.comments}

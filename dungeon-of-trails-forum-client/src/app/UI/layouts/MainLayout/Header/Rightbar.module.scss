@@ -103,3 +103,14 @@
   background-color: rgba(0, 0, 0, 0.5); /* Mờ nền với mức độ 50% */
   z-index: -1; /* Đảm bảo lớp nền hiển thị phía trên các phần tử khác */
 }
+
+.edit_profile_close {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  float: right;
+  background-color: transparent;
+  border: none;
+  color: black;
+}

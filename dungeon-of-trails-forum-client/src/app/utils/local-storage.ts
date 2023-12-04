@@ -17,6 +17,7 @@ export const removeUserEmail = () => localStorage.removeItem('DoT-UserEmail');
 export const removeUserId = () => localStorage.removeItem('DoT-UserId');
 export const removeUserName = () => localStorage.removeItem('DoT-Name');
 export const removeUserAvatarURL = () => localStorage.removeItem('DoT-AVT');
+export const removeIsAdmin = () => localStorage.removeItem('DoT-isAdmin');
 
 export const setUserEmail = (at: string) =>
   localStorage.setItem('DoT-UserEmail', at);
@@ -24,6 +25,9 @@ export const setUserId = (ft: string) => localStorage.setItem('DoT-UserId', ft);
 export const setUserName = (at: string) => localStorage.setItem('DoT-Name', at);
 export const setUserAvatarURL = (ft: string) =>
   localStorage.setItem('DoT-AVT', ft);
+export const setIsAdmin = (ft: string) =>
+  localStorage.setItem('DoT-isAdmin', ft);
+export const getIsAdmin = () => localStorage.getItem('DoT-isAdmin') || '0';
 
 export const removeAllUserInfo = () => {
   removeAccessToken();
@@ -32,4 +36,5 @@ export const removeAllUserInfo = () => {
   removeUserId();
   removeUserName();
   removeUserAvatarURL();
+  removeIsAdmin();
 };

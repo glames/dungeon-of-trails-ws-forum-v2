@@ -1,0 +1,12 @@
+query GetGameScore {
+  GetGameScore {
+    id
+    userId
+    score
+    endTime
+    user {
+      name
+      avatarUrl
+    }
+  }
+}

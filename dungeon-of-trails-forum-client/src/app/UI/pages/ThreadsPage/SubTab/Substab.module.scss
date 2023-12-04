@@ -40,8 +40,14 @@
   }
 
   .postedDate {
-    float: right;
     padding: 0px 10px;
+  }
+
+  .voteButton {
+    padding: 0px 10px;
+    width: 40px;
+    height: auto;
+    float: right;
   }
 
   .postInfo {
@@ -50,9 +56,11 @@
   }
 }
 .commentCount {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  margin-left: 10px;
+  float: right;
+}
+.totalVotes {
+  float: right;
 }
 
 .reloadButton {

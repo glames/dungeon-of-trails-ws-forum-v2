@@ -25,6 +25,7 @@
 }
 
 .PostContainer {
+  position: relative;
   width: 100%;
   margin-bottom: 100px;
   background-color: white;
@@ -154,5 +155,24 @@
     font-weight: bold;
     border: none;
     float: right;
+  }
+}
+
+.voteButton {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  padding: 0px 10px;
+  img {
+    width: 30px;
+    height: auto;
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  span {
+    font-size: 15px;
+    font-weight: bold;
+    vertical-align: middle;
   }
 }

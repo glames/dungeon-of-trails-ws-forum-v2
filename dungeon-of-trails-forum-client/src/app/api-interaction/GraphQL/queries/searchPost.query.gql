@@ -1,0 +1,22 @@
+query SearchPost($seachData: String) {
+  SearchPost(searchData: $seachData) {
+    id
+    postedAt
+    title
+    attachmentUrl
+    body
+    score
+    totalComment
+    totalPostVote
+    totalReply
+    thread {
+      id
+      name
+    }
+    postedUser {
+      name
+      email
+      avatarUrl
+    }
+  }
+}

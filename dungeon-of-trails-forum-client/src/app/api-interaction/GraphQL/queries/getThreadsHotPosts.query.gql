@@ -8,6 +8,7 @@ query GetThreadHotPosts($thread: String) {
     score
     totalComment
     totalReply
+    totalPostVote
     thread {
       id
       name
@@ -15,6 +16,7 @@ query GetThreadHotPosts($thread: String) {
     postedUser {
       name
       email
+      avatarUrl
     }
   }
 }

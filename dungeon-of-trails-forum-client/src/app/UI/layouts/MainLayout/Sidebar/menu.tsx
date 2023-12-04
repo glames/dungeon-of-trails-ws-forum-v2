@@ -14,9 +14,17 @@ import {
   Codesandbox,
   Globe,
   LogOut,
+  BarChart,
+  LifeBuoy,
+  User,
+  Table,
 } from 'react-feather';
 import {
+  ADMIN_LANDING_PATH,
+  ADMIN_USER_LIST_PATH,
+  ADMIN_USER_POST_PATH,
   HOME_PATH,
+  SCOREBOARD_PATH,
   THREAD_DISCUSSION,
   THREAD_HOWTOPLAY,
   THREAD_NEWS,
@@ -25,6 +33,7 @@ import {
 } from '~/app/routes/paths';
 
 import { IMenuList } from '~/app/models/menu.model';
+import ScoreboardPage from '~/app/UI/pages/ScoreboardPage';
 
 export const MENUITEMS: IMenuList[] = [
   {
@@ -35,6 +44,93 @@ export const MENUITEMS: IMenuList[] = [
         title: 'Home',
         path: HOME_PATH,
         icon: Home,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Games Scoreboard',
+        path: SCOREBOARD_PATH,
+        icon: BarChart,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Discussion',
+        path: THREAD_DISCUSSION,
+        icon: Coffee,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Tips',
+        path: THREAD_TIPS,
+        icon: Codesandbox,
+        type: 'link',
+        bookmark: true,
+        active: false,
+      },
+      {
+        title: 'News',
+        path: THREAD_NEWS,
+        icon: Globe,
+        type: 'link',
+        active: false,
+      },
+      {
+        path: '/Logout',
+        icon: LogOut,
+        title: 'Logout',
+        type: 'link',
+        active: false,
+      },
+    ],
+  },
+];
+
+export const AdminMenu: IMenuList[] = [
+  {
+    menutitle: '',
+    menucontent: '',
+    Items: [
+      {
+        title: 'Admin Landing',
+        path: ADMIN_LANDING_PATH,
+        icon: LifeBuoy,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'User Management',
+        path: '/Admin/Users/1',
+        icon: User,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Post Management',
+        path: '/Admin/Posts/1',
+        icon: Table,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Home',
+        path: HOME_PATH,
+        icon: Home,
+        type: 'link',
+        badge: 'badge badge-success',
+        active: false,
+      },
+      {
+        title: 'Games Scoreboard',
+        path: SCOREBOARD_PATH,
+        icon: BarChart,
         type: 'link',
         badge: 'badge badge-success',
         active: false,

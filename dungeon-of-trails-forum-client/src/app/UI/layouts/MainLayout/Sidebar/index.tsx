@@ -2,12 +2,13 @@ import { Fragment, useState, useEffect, FunctionComponent } from 'react';
 import { ArrowRight, ArrowLeft, AlignRight } from 'react-feather';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { MENUITEMS } from './menu';
+import { MENUITEMS, AdminMenu } from './menu';
 import { IMenu, IMenuList } from '~/app/models/menu.model';
 import { useSelector } from 'react-redux';
 import { RootState } from '~/app/redux-tk/store';
 import { selectCurrentUser } from '~/app/redux-tk/slices/auth.slice';
 import {
+  getIsAdmin,
   getUserAvatarURL,
   getUserId,
   getUserName,
@@ -26,7 +27,10 @@ const Sidebar = () => {
 
   const id = window.location.pathname.split('/').pop();
   const layout = id ? id : 1;
-  const [mainmenu, setMainMenu] = useState<IMenuList[]>(MENUITEMS);
+  const [mainmenu, setMainMenu] = useState<IMenuList[]>(
+    getIsAdmin() == '1' ? AdminMenu : MENUITEMS
+  );
+
   const [margin, setMargin] = useState(0);
   const [width, setWidth] = useState(0);
   const [sidebartoogle, setSidebartoogle] = useState(true);
@@ -46,7 +50,7 @@ const Sidebar = () => {
     handleResize();
     const currentUrl = window.location.pathname;
     console.log(currentUrl);
-    MENUITEMS.map((items) => {
+    mainmenu.map((items) => {
       items.Items.filter((Items) => {
         if (Items.path === currentUrl) setNavActive(Items);
         if (!Items.children) return false;
@@ -82,7 +86,7 @@ const Sidebar = () => {
   };
 
   const setNavActive = (item: IMenu) => {
-    MENUITEMS.forEach((menuItems) => {
+    mainmenu.forEach((menuItems) => {
       menuItems.Items.forEach((Items) => {
         if (Items !== item) {
           Items.active = false;
@@ -106,11 +110,11 @@ const Sidebar = () => {
         }
       });
     });
-    setMainMenu([...MENUITEMS]);
+    setMainMenu([...mainmenu]);
   };
 
   const toggletNavActive = (item: IMenu) => {
-    MENUITEMS.forEach((a) => {
+    mainmenu.forEach((a) => {
       a.Items.forEach((Items) => {
         if (Items === item) {
           Items.active = !Items.active;
@@ -140,7 +144,7 @@ const Sidebar = () => {
         }
       });
     });
-    setMainMenu([...MENUITEMS]);
+    setMainMenu([...mainmenu]);
   };
 
   const scrollToRight = () => {
@@ -221,6 +225,7 @@ const Sidebar = () => {
                 className="img-fluid for-light"
                 src={getUserAvatarURL()}
                 alt=""
+                style={{ borderRadius: '50%' }}
               />
             </div>
             <div
@@ -263,7 +268,7 @@ const Sidebar = () => {
                   <i className="fa fa-angle-right pl-2" aria-hidden="true"></i>
                 </div>
               </li>
-              {MENUITEMS.map((Item, i) => (
+              {mainmenu.map((Item, i) => (
                 <Fragment key={i}>
                   {Item.Items.map((menuItem, i) => (
                     <li

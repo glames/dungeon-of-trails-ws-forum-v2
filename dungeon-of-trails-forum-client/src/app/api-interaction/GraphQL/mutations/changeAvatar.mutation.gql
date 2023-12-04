@@ -1,0 +1,3 @@
+# mutation ChangeAvatar($file: Upload) {
+#   ChangeAvatar(file: $file)
+# }

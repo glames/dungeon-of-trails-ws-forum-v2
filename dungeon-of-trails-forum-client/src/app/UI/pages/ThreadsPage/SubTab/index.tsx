@@ -14,8 +14,10 @@ import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 //   faCircleNotch,
 //   faCommentDots,
 // } from '@fortawesome/free-solid-svg-icons';
-import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faCommentDots, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import NoData from '~/app/UI/components/Elements/EditPostModal';
+import { toast } from 'react-toastify';
 
 interface PostTabProps {
   threadName: string | undefined;
@@ -71,33 +73,48 @@ const HotPostTab: React.FC<PostTabProps> = ({ threadName }) => {
   return (
     <div>
       <ul className={styles.list}>
-        {currentPosts?.map((post: any, index) => (
-          <li key={index}>
-            <div>
-              <img src="/assets/images/avtar/default-avatar.png" alt="avatar" />
-            </div>
-            <div>
-              <div
-                className={styles.title}
-                onClick={() => nav(`/Posts/${post.id}`)}
-              >
-                {post.title}
+        {currentPosts && currentPosts.length > 0 ? (
+          currentPosts?.map((post: any, index) => (
+            <li key={index}>
+              <div>
+                <img
+                  src={
+                    post.postedUser.avatarUrl ||
+                    '/assets/images/avta2r/default-avatar.png'
+                  }
+                  alt="avatar"
+                  style={{ borderRadius: '50%' }}
+                />
               </div>
-              <div className={styles.postInfo}>
-                <div className={styles.author}>
-                  Author: {post.postedUser.name}
+              <div>
+                <div
+                  className={styles.title}
+                  onClick={() => nav(`/Posts/${post.id}`)}
+                >
+                  {post.title}
                 </div>
-                <div className={styles.postedDate}>
-                  {formatPostedAt(post.postedAt)}
-                </div>
-                <div className={styles.commentCount}>
-                  {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
-                  <FontAwesomeIcon icon={faCommentDots} />{' '}
+                <div className={styles.postInfo}>
+                  <div className={styles.author}>
+                    Author: {post.postedUser.name} -
+                  </div>
+                  <div className={styles.postedDate}>
+                    {formatPostedAt(post.postedAt)}
+                  </div>
+                  <div className={styles.commentCount}>
+                    {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
+                    <FontAwesomeIcon icon={faCommentDots} />{' '}
+                  </div>
+
+                  <div className={styles.totalVotes}>
+                    {post.totalPostVote} <FontAwesomeIcon icon={faHeart} />{' '}
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        ) : (
+          <NoData />
+        )}
       </ul>
 
       {/* Hiển thị phân trang */}
@@ -154,50 +171,51 @@ const NewestPostTab: React.FC<PostTabProps> = ({ threadName }) => {
   return (
     <div>
       <ul className={styles.list}>
-        {currentPosts?.map((post: any, index) => (
-          <li key={index}>
-            <div>
-              <img src="/assets/images/avtar/default-avatar.png" alt="avatar" />
-            </div>
-            <div>
-              <div
-                className={styles.title}
-                onClick={() => nav(`/Posts/${post.id}`)}
-              >
-                {post?.title}
+        {currentPosts && currentPosts.length > 0 ? (
+          currentPosts?.map((post: any, index) => (
+            <li key={index}>
+              <div>
+                <img
+                  src={
+                    post.postedUser.avatarUrl ||
+                    '/assets/images/avta2r/default-avatar.png'
+                  }
+                  alt="avatar"
+                  style={{ borderRadius: '50%' }}
+                />
               </div>
-              <div className={styles.postInfo}>
-                <div className={styles.author}>
-                  Author: {post.postedUser.name}
+              <div>
+                <div
+                  className={styles.title}
+                  onClick={() => nav(`/Posts/${post.id}`)}
+                >
+                  {post?.title}
                 </div>
-                <div className={styles.postedDate}>
-                  {formatPostedAt(post.postedAt)}
+                <div className={styles.postInfo}>
+                  <div className={styles.author}>
+                    Author: {post.postedUser.name} -
+                  </div>
+                  <div className={styles.postedDate}>
+                    {formatPostedAt(post.postedAt)}
+                  </div>
+                  <div className={styles.commentCount}>
+                    {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
+                    <FontAwesomeIcon icon={faCommentDots} />{' '}
+                  </div>
+                  <div className={styles.totalVotes}>
+                    {post.totalPostVote} <FontAwesomeIcon icon={faHeart} />{' '}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.commentCount}>
-              {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
-              <FontAwesomeIcon icon={faCommentDots} />{' '}
-            </div>
-          </li>
-        ))}
+            </li>
+          ))
+        ) : (
+          <NoData />
+        )}
       </ul>
 
       {/* Hiển thị phân trang */}
-      <div>
-        {(newestPosts?.GetThreadPosts?.length ?? 0) > postsPerPage && (
-          <select
-            value={currentPage}
-            onChange={(e) => paginate(Number(e.target.value))}
-          >
-            {pageOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
+
       <div className={styles.reloadButton} onClick={() => refetch()}>
         <FontAwesomeIcon icon={faRotateRight} />
       </div>

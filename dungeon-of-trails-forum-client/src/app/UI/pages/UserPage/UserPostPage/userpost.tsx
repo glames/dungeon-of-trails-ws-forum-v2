@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface PostTabProps {
   hotPosts: any;
+  avatar: any;
 }
 
 const formatPostedAt = (postedAt: string) => {
@@ -40,7 +41,7 @@ const formatPostedAt = (postedAt: string) => {
   }
 };
 
-const UserPostTab: React.FC<PostTabProps> = ({ hotPosts }) => {
+const UserPostTab: React.FC<PostTabProps> = ({ hotPosts, avatar }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
 
@@ -62,31 +63,39 @@ const UserPostTab: React.FC<PostTabProps> = ({ hotPosts }) => {
   return (
     <div>
       <ul className={styles.list}>
-        {currentPosts?.map((post: any) => (
-          <li key={post.id}>
-            <div>
-              <img src="/assets/images/avtar/default-avatar.png" alt="avatar" />
-            </div>
-            <div>
-              <div
-                className={styles.title}
-                onClick={() => nav(`/Posts/${post.id}`)}
-              >
-                {post.title}
-              </div>
-              <div className={styles.postInfo}>
-                <div className={styles.author}></div>
-                <div className={styles.postedDate}>
-                  {formatPostedAt(post.postedAt)}
+        {currentPosts?.map(
+          (post: any) =>
+            // Thêm dấu ngoặc đóng ở đây
+            post.isDeleted === false && (
+              <li key={post.id}>
+                <div>
+                  <img
+                    src={avatar || '/assets/images/avtar/default-avatar.png'}
+                    alt="avatar"
+                    style={{ borderRadius: '50%' }}
+                  />
                 </div>
-                <div className={styles.commentCount}>
-                  {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
-                  <FontAwesomeIcon icon={faCommentDots} />{' '}
+                <div>
+                  <div
+                    className={styles.title}
+                    onClick={() => nav(`/Posts/${post.id}`)}
+                  >
+                    {post.title}
+                  </div>
+                  <div className={styles.postInfo}>
+                    <div className={styles.author}></div>
+                    <div className={styles.postedDate}>
+                      {formatPostedAt(post.postedAt)}
+                    </div>
+                    <div className={styles.commentCount}>
+                      {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
+                      <FontAwesomeIcon icon={faCommentDots} />{' '}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
-        ))}
+              </li>
+            )
+        )}
       </ul>
       {/* Hiển thị phân trang */}
       <div>

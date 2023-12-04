@@ -4,6 +4,7 @@ mutation UserLogin($Email: String, $Password: String) {
     user {
       id
       email
+      isAdmin
       name
       avatarUrl
     }

@@ -1,0 +1,221 @@
+.PostPageContainer {
+  min-width: 270px;
+  width: 80%;
+  margin: auto;
+}
+
+.modal_container {
+  width: 80%;
+  height: 70vh;
+  overflow: scroll;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  a {
+    color: #19aa8d !important;
+  }
+  * {
+    font-family: cursive;
+  }
+  h2 {
+    text-align: center;
+  }
+  label {
+    margin-top: 15px;
+  }
+  form {
+    padding: 50px;
+    input {
+      border: none;
+      border-bottom: 1px solid gray;
+      outline: none;
+    }
+    .LoginSubmit {
+      background-color: #19aa8d !important;
+      color: white;
+      border-color: #19aa8d !important;
+      width: 100%;
+      font-weight: bold;
+      padding: 6px;
+    }
+  }
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.modal_overlay_delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Mờ nền với mức độ 50% */
+  z-index: 2; /* Đảm bảo lớp nền hiển thị phía trên các phần tử khác */
+}
+
+.PostContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 100px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  img {
+    width: 100%;
+  }
+  .PostInfoContainer {
+    display: block;
+    padding: 10px 30px;
+    div {
+      display: inline-block;
+      div {
+        display: block;
+      }
+    }
+    .PostInfo {
+      margin-left: 20px;
+      .PostThread {
+        a {
+          color: black !important;
+          font-weight: bold;
+        }
+      }
+      .PostAuthor {
+        a {
+          color: gray;
+          text-decoration: underline;
+        }
+      }
+    }
+    .AuthorAvtContainer {
+      width: 40px;
+      height: 40px;
+      vertical-align: top;
+    }
+    .PostTitle {
+      margin-top: 30px;
+    }
+  }
+
+  .PostContent {
+    display: block;
+    padding: 40px 30px;
+  }
+}
+
+.Pager {
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.OptionsDropListContainer {
+  float: right;
+  position: relative;
+}
+
+.OptionsButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.OptionsList {
+  width: 110px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  li {
+    padding: 10px;
+  }
+  li:hover {
+    background-color: #e7f2f9;
+    cursor: pointer;
+  }
+}
+.delete_modal {
+  position: fixed;
+  padding: 20px 30px;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+}
+
+.delete_modal_buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.ConfirmDeleteBtn,
+.CancelDeleteBtn {
+  text-align: center;
+  padding: 10px 20px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  border: none;
+}
+.ConfirmDeleteBtn {
+  color: white;
+  background-color: #dc3545;
+}
+
+.success_modal {
+  font-family: cursive;
+  z-index: 99999;
+  width: 250px;
+  position: fixed;
+  bottom: 10%;
+  right: 2%;
+  color: black;
+  font-weight: bold;
+  font-family: cursive;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+  .success_modal_content {
+    padding: 5px 15px;
+  }
+  button {
+    background-color: transparent;
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    float: right;
+  }
+}
+
+.voteButton {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  padding: 0px 10px;
+  img {
+    width: 30px;
+    height: auto;
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  span {
+    font-size: 15px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+}

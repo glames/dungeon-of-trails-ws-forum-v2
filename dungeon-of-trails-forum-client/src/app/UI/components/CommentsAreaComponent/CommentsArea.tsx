@@ -143,7 +143,7 @@ const CommentsArea = (props: any) => {
           apiKey="jioaerqaehwh4wq0klpujtl4rxoxmeb4uid27hive9k014n2"
           value={commentEditorContent}
           onEditorChange={handleCommentEditorChange}
-          init={editorConfig}
+          init={{ editorConfig, menubar: false }}
         />
       )}
 
@@ -157,7 +157,11 @@ const CommentsArea = (props: any) => {
             <div className={styles.CommentInfoContainer}>
               <div className={styles.AuthorAvtContainer}>
                 <img
-                  src="/assets/images/avtar/default-avatar.png"
+                  src={
+                    comment.commentUser.avatarUrl ||
+                    '/assets/images/avtar/default-avatar.png'
+                  }
+                  style={{ borderRadius: '50%' }}
                   alt="avatar"
                 />
               </div>
@@ -190,7 +194,11 @@ const CommentsArea = (props: any) => {
                     <div className={styles.CommentInfoContainer}>
                       <div className={styles.AuthorAvtContainer}>
                         <img
-                          src="/assets/images/avtar/default-avatar.png"
+                          src={
+                            reply.commentUser.avatarUrl ||
+                            '/assets/images/avtar/default-avatar.png'
+                          }
+                          style={{ borderRadius: '50%' }}
                           alt="avatar"
                         />
                       </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   FileText,
   LogIn,
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Rightbar.module.scss';
 import { useMutation } from '@apollo/client';
 import {
+  useForgetPasswordMutation,
   useSignInWithTokenQuery,
   useUserLoginMutation,
   useUserRegisterMutation,
@@ -20,7 +21,9 @@ import {
   getAccessToken,
   removeAllUserInfo,
   setAccessToken,
+  setUserAvatarURL,
   setUserEmail,
+  setUserName,
 } from '~/app/utils/local-storage';
 import { HOME_PATH } from '~/app/routes/paths';
 import './styles.css';
@@ -43,6 +46,9 @@ const Rightbar = (props: any) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showForgetModal, setShowForgetModal] = useState(false);
+  const [forgetEmail, setForgetEmail] = useState('');
+
   const [successClass, setSuccessClass] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [email, setEmail] = useState('');
@@ -54,34 +60,40 @@ const Rightbar = (props: any) => {
   const [registerGender, setRegisterGender] = useState(0);
   const [userLogin] = useUserLoginMutation();
   const [userRegister] = useUserRegisterMutation();
-  //const { data: signInWithToken, refetch } = useSignInWithTokenQuery({});
+  const [forgetPassword] = useForgetPasswordMutation();
+
+  //const [forgetPassword] = useForgetPasswordMutation();
+  const { data: signInWithToken, refetch } = useSignInWithTokenQuery({
+    fetchPolicy: 'no-cache',
+  });
   const dispatch = useAppDispatch();
 
-  // refetch()
-  //   .then((response) => {
-  //     if (response && response.data?.SignInWithToken != null) {
-  //       updateCurrentUser(
-  //         response.data.SignInWithToken.email,
-  //         response.data.SignInWithToken.id,
-  //         response.data.SignInWithToken.name,
-  //         response.data.SignInWithToken.avatarUrl
-  //       );
-  //     } else {
-  //       removeAllUserInfo();
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     if (
-  //       error.message === 'Response not successful: Received status code 401'
-  //     ) {
-  //       // Xử lý lỗi 401 Unauthorized tại đây
-  //       // Ví dụ: Hiển thị thông báo lỗi hoặc không làm gì cả
-  //       console.error('Error 401 Unauthorized:', error);
-  //     } else {
-  //       // Xử lý các lỗi khác nếu cần
-  //       console.error('Other error:', error);
-  //     }
-  //   });
+  refetch()
+    .then((response) => {
+      if (response && response.data?.SignInWithToken != null) {
+        updateCurrentUser(
+          response.data.SignInWithToken.email,
+          response.data.SignInWithToken.id,
+          response.data.SignInWithToken.name,
+          response.data.SignInWithToken.avatarUrl,
+          response.data.SignInWithToken.isAdmin == true ? '1' : '0'
+        );
+      } else {
+        removeAllUserInfo();
+      }
+    })
+    .catch((error) => {
+      if (
+        error.message === 'Response not successful: Received status code 401'
+      ) {
+        // Xử lý lỗi 401 Unauthorized tại đây
+        // Ví dụ: Hiển thị thông báo lỗi hoặc không làm gì cả
+        console.error('Error 401 Unauthorized:');
+      } else {
+        // Xử lý các lỗi khác nếu cần
+        console.error('Other error:');
+      }
+    });
   // Thay đổi giá trị của accessToken và refreshToken
   const updateTokenForUser = (accessToken: any, refreshToken: any) => {
     dispatch(setTokenForUser({ accessToken, refreshToken }));
@@ -92,9 +104,10 @@ const Rightbar = (props: any) => {
     userEmail: any,
     userId: any,
     name: any,
-    avatarUrl: any
+    avatarUrl: any,
+    isAdmin: string
   ) => {
-    dispatch(setCurrentUser({ userEmail, userId, name, avatarUrl }));
+    dispatch(setCurrentUser({ userEmail, userId, name, avatarUrl, isAdmin }));
   };
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -106,6 +119,11 @@ const Rightbar = (props: any) => {
 
   const toggleRegisterModal = () => {
     setShowRegisterModal(!showRegisterModal);
+  };
+
+  const toggleForgetModal = () => {
+    setShowModal(!showModal);
+    setShowForgetModal(!showForgetModal);
   };
 
   const redirectToChats = () => {
@@ -145,7 +163,8 @@ const Rightbar = (props: any) => {
             response.data.UserLogin.user.email,
             response.data.UserLogin.user.id,
             response.data.UserLogin.user.name,
-            response.data.UserLogin.user.avatarUrl
+            response.data.UserLogin.user.avatarUrl,
+            response.data.UserLogin.user.isAdmin == true ? '1' : '0'
           );
           setShowSuccessModal(true);
           setSuccessMessage('Login successful!');
@@ -156,7 +175,10 @@ const Rightbar = (props: any) => {
             setSuccessMessage('');
             setSuccessClass('');
           }, 2000);
-          location.reload();
+          if (response.data.UserLogin.user.isAdmin) {
+            navigate('/Admin');
+            window.location.reload();
+          }
         } else {
           removeAllUserInfo();
           setShowSuccessModal(true);
@@ -201,9 +223,8 @@ const Rightbar = (props: any) => {
             setSuccessMessage('');
             setSuccessClass('');
           }, 2000);
-          navigate(HOME_PATH);
+          window.location.reload();
         } else {
-          alert('?');
           setAccessToken('');
           setShowSuccessModal(true);
           setSuccessClass('error_msg');
@@ -211,6 +232,52 @@ const Rightbar = (props: any) => {
             setSuccessMessage('Register Failed! Please try again');
           } else {
             setSuccessMessage('Register Failed! Email already existed');
+          }
+          setTimeout(() => {
+            setShowSuccessModal(false);
+            setSuccessMessage('');
+            setSuccessClass('');
+          }, 2000);
+        }
+      })
+      .catch((error) => {
+        // Handle error if needed
+      });
+  };
+
+  const hanldeSubmitForget = (e: any) => {
+    e.preventDefault();
+
+    forgetPassword({
+      variables: {
+        email: forgetEmail,
+      },
+    })
+      .then((response) => {
+        if (
+          response.data?.ForgetPassword != null &&
+          response.data?.ForgetPassword != 'NotExisted'
+        ) {
+          setAccessToken(response.data.ForgetPassword);
+          setShowSuccessModal(true);
+          setSuccessMessage('Reset Email Sended!');
+          setSuccessClass('success_msg');
+          setShowRegisterModal(false);
+          setTimeout(() => {
+            setShowSuccessModal(false);
+            setSuccessMessage('');
+            setSuccessClass('');
+          }, 2000);
+          navigate(HOME_PATH);
+          toggleForgetModal();
+        } else {
+          setAccessToken('');
+          setShowSuccessModal(true);
+          setSuccessClass('error_msg');
+          if (response.data?.ForgetPassword == null) {
+            setSuccessMessage('Failed! Please try again');
+          } else {
+            setSuccessMessage('This Email is not existed');
           }
           setTimeout(() => {
             setShowSuccessModal(false);
@@ -252,7 +319,7 @@ const Rightbar = (props: any) => {
                 className={styles.uploadPostButton}
                 onClick={toggleUploadPostModal}
               >
-                Upload Your Post
+                Upload Post
               </button>
             </li>
           )
@@ -304,9 +371,14 @@ const Rightbar = (props: any) => {
                   Login
                 </button>
               </form>
-              <a className="text-center" href="/ForgetPassword">
-                Forget Password?
-              </a>
+              <div className="text-center">
+                <button
+                  className={styles.registerBtn}
+                  onClick={toggleForgetModal}
+                >
+                  Forget password?
+                </button>
+              </div>
             </div>
             <hr />
             <div className="text-center">
@@ -406,6 +478,47 @@ const Rightbar = (props: any) => {
               <button
                 className={styles.registerBtn}
                 onClick={toggleRegisterModal}
+              >
+                Login here
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showForgetModal && (
+        <div className={styles.modal_overlay} onClick={toggleForgetModal}>
+          <div
+            className={styles.modal_container}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-content">
+              <h2>Forget Password</h2>
+              <form onSubmit={hanldeSubmitForget}>
+                <div className="form-group">
+                  <label htmlFor="forgetEmail">Email</label>
+                  <br />
+                  <input
+                    required
+                    type="email"
+                    id="forgetEmail"
+                    name="forgetEmail"
+                    value={forgetEmail}
+                    onChange={(e) => setForgetEmail(e.target.value)}
+                  />
+                </div>
+
+                <br />
+                <button className={styles.LoginSubmit} type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <hr />
+            <div className="text-center">
+              Already have an account?{' '}
+              <button
+                className={styles.registerBtn}
+                onClick={toggleForgetModal}
               >
                 Login here
               </button>

@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface PostTabProps {
   hotPosts: any;
+  avatar: any;
 }
 
 const formatPostedAt = (postedAt: string) => {
@@ -40,7 +41,7 @@ const formatPostedAt = (postedAt: string) => {
   }
 };
 
-const RecentCommentTab: React.FC<PostTabProps> = ({ hotPosts }) => {
+const RecentCommentTab: React.FC<PostTabProps> = ({ hotPosts, avatar }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
 
@@ -65,15 +66,20 @@ const RecentCommentTab: React.FC<PostTabProps> = ({ hotPosts }) => {
         {currentPosts?.map((post: any) => (
           <li key={post.id}>
             <div>
-              <img src="/assets/images/avtar/default-avatar.png" alt="avatar" />
+              <img
+                src={avatar || '/assets/images/avtar/default-avatar.png'}
+                alt="avatar"
+                style={{ borderRadius: '50%' }}
+              />
             </div>
             <div>
               <div
                 className={styles.commentBody}
                 onClick={() => nav(`/Posts/${post.postId}`)}
-              >
-                {post.body}
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: post?.body || '',
+                }}
+              ></div>
               <div className={styles.postInfo}>
                 <div className={styles.author}></div>
                 <div className={styles.postedDate}>

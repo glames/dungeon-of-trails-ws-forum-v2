@@ -8,6 +8,7 @@ query GetPostDetail($postId: String, $commentPageNo: Int) {
     totalComment
     totalReply
     postedAt
+    totalPostVote
     postedUser {
       id
       name

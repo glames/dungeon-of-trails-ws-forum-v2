@@ -1,23 +1,13 @@
 import { useState, useEffect } from 'react';
+import ReactLoading from 'react-loading';
+import styles from './Loader.module.scss';
 
 const Loader = () => {
   const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShow(false);
-    }, 3000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [show]);
-
   return (
-    <div className={`loader-wrapper ${show ? '' : 'loderhide'}`}>
-      <div className='loader-box'>
-        <div className='loader-15'></div>
-      </div>
+    <div className={styles.LoadCont}>
+      <ReactLoading color="#367223" />
     </div>
   );
 };

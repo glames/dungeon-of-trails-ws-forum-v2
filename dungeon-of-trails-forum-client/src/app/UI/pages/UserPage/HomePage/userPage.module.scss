@@ -8,6 +8,7 @@
 }
 
 .profile_upper {
+  position: relative;
   display: block;
   div {
     text-align: left;
@@ -17,13 +18,58 @@
   div:nth-child(2) {
     padding: 0px 40px;
   }
+  .profile_setting_cont {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    img {
+      width: 25px;
+      height: auto;
+    }
+  }
+  .profile_setting_cont:hover {
+    cursor: pointer;
+  }
+}
+
+.OptionsList {
+  width: 160px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  li {
+    padding: 10px;
+  }
+  li:hover {
+    background-color: #e7f2f9;
+    cursor: pointer;
+  }
 }
 
 .profile_avt {
+  position: relative;
   width: 25%;
   text-align: left;
   img {
+    border-radius: 50%;
     width: 100%;
+  }
+  .upload_btn {
+    background-size: 100% 100%;
+    opacity: 1;
+    color: white;
+    height: 40px;
+    width: auto;
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+  .upload_btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
   }
 }
 .profile_des {

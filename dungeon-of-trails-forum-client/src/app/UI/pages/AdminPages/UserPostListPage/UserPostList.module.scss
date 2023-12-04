@@ -1,0 +1,103 @@
+.ScoreboardContainer {
+  position: relative;
+  padding: 20px 10px;
+  width: 100%;
+  margin-bottom: 100px;
+  background-color: #16171a;
+  border-radius: 0.8rem;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  img {
+    width: 100%;
+  }
+}
+
+.ScoreboardTitle {
+  vertical-align: middle;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Rubik';
+  text-transform: uppercase;
+}
+
+.ScoreboardBody {
+  ul {
+    li {
+      color: white;
+      margin-bottom: 5px  ;
+      div {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      > div:nth-child(1) {
+        width: 15%;
+        text-align: center;
+      }
+      > div:nth-child(2) {
+        width: 15%;
+        text-align: center;
+      }
+      > div:nth-child(3) {
+        width: 50%;
+        text-align: center;
+      }
+      > div:nth-child(4) {
+        width: 20%;
+        text-align: center;
+      }
+      .AvatarContainer {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+    > li:nth-child(2) {
+      font-weight: bold;
+      color: #fdcb6e;
+      > .RankNo {
+        color: black;
+        > div {
+          padding: 5px 10px 10px 10px;
+          width: 30px;
+          height: 30px;
+          vertical-align: middle;
+          background-color: #fdcb6e;
+          border-radius: 5px;
+        }
+      }
+    }
+    > li:nth-child(3) {
+      font-weight: bold;
+      color: #00cec9;
+      > .RankNo {
+        color: black;
+        > div {
+          padding: 5px 10px 10px 10px;
+          width: 30px;
+          height: 30px;
+          vertical-align: middle;
+          background-color: #00cec9;
+          border-radius: 5px;
+        }
+      }
+    }
+    > li:nth-child(4) {
+      font-weight: bold;
+      color: #e17055;
+      > .RankNo {
+        color: black;
+        > div {
+          padding: 5px 10px 10px 10px;
+          width: 30px;
+          height: 30px;
+          vertical-align: middle;
+          background-color: #e17055;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

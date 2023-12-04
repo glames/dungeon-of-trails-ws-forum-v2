@@ -1,0 +1,9 @@
+mutation editProfile(
+  $des: String!
+  $dob: DateTime!
+  $gender: Boolean!
+  $name: String!
+  $email: String!
+) {
+  editProfile(des: $des, dob: $dob, gender: $gender, name: $name, email: $email)
+}

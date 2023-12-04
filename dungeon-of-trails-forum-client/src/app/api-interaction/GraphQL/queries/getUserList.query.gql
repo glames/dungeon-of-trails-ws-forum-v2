@@ -1,0 +1,12 @@
+query GetUserList($pageNo: Int) {
+  GetUserList(pageNo: $pageNo) {
+    id
+    name
+    dob
+    email
+    description
+    isDeleted
+    isAdmin
+    avatarUrl
+  }
+}

@@ -1,0 +1,24 @@
+.success_modal {
+  font-family: cursive;
+  z-index: 99999;
+  width: 250px;
+  position: fixed;
+  bottom: 10%;
+  right: 2%;
+  color: black;
+  font-weight: bold;
+  font-family: cursive;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 5px;
+  .success_modal_content {
+    padding: 5px 15px;
+  }
+  button {
+    background-color: transparent;
+    font-family: monospace;
+    font-weight: bold;
+    border: none;
+    float: right;
+  }
+}
