@@ -48,12 +48,12 @@
       "executor": "@nx/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "dungeon-of-trails-ws:build",
+        "buildTarget": "dungeon-of-trails-forum-client:build",
         "hmr": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "dungeon-of-trails-ws:build:development"
+          "buildTarget": "dungeon-of-trails-forum-client:build:development"
         },
         "production": {
           "buildTarget": "dungeon-of-trails-forum-client:production",
@@ -71,7 +71,7 @@
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "dungeon-of-trails-ws:build"
+        "buildTarget": "dungeon-of-trails-forum-client:build"
       }
     },
     "test": {
