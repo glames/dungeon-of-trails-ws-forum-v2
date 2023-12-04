@@ -10,8 +10,9 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
   };
   config.output = {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'), // Use an absolute path
+    path: path.resolve(__dirname, 'dungeon-of-trails-forum-client/dist'), // Use an absolute path
   };
+  console.log(path.resolve(__dirname, 'dungeon-of-trails-forum-client/dist'));
   // Disable CSS minification
   config.optimization.minimize = false;
   return config;
