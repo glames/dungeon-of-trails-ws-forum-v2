@@ -1,4 +1,4 @@
-version: 1
+version: 2
 frontend:
   phases:
     preBuild:
@@ -8,7 +8,7 @@ frontend:
       commands:
         - npx nx build
   artifacts:
-    baseDirectory: dungeon-of-trails-forum-client/dist
+    baseDirectory: dungeon-of-trails-forum-client
     files:
       - '**/*'
   cache:
