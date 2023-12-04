@@ -16,7 +16,7 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
     "src/**/*.d.ts"
-  ],
+, "app.module.scss.d.ts"  ],
   "files": [
     "../node_modules/@nx/react/typings/cssmodule.d.ts",
     "../node_modules/@nx/react/typings/image.d.ts"

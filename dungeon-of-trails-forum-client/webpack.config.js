@@ -1,9 +1,15 @@
-const { composePlugins, withNx } = require('@nx/webpack');
-const { withReact } = require('@nx/react');
-
+const path = require('path');
+const { composePlugins, withNx } = require('@nrwl/webpack');
+const { withReact } = require('@nrwl/react');
+const Dotenv = require('dotenv-webpack');
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withReact(), (config) => {
-  // Update the webpack config as needed here.
-  // e.g. `config.plugins.push(new MyPlugin())`
+  config.plugins.push(new Dotenv());
+  config.output = {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'), // Use an absolute path
+  };
+  // Disable CSS minification
+  config.optimization.minimize = false;
   return config;
 });
