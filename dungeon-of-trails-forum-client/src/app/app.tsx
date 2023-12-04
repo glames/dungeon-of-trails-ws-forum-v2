@@ -15,7 +15,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import fetch from 'cross-fetch';
-import './app.module.scss';
 
 import { RouteType, publicRoutes, privateRoutes } from './routes';
 import MainLayout from './UI/layouts/MainLayout';
