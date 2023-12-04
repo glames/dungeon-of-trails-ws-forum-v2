@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "client": "nx run dungeon-of-trails-forum-client:serve",
-    "build": "nx build",
+    "build": "nx build dungeon-of-trails-forum-client",
     "test": "nx test",
     "gql:gen": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
