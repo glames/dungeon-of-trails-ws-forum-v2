@@ -38,7 +38,7 @@ import ProtectedRoute from './UI/components/ProtectedRoute';
 import withAuthentication from './UI/components/WithAuthenticationComponent';
 
 const httpLink = createHttpLink({
-  uri: `http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/graphql`,
+  uri: `https://cors-anywhere.herokuapp.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/graphql`,
   fetch,
 });
 
