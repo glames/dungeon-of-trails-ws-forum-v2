@@ -43,6 +43,7 @@ const AdminLandingPage = () => {
           formData,
           {
             headers: {
+              'Access-Control-Allow-Origin': '*',
               'Content-Type': 'multipart/form-data',
               Authorization: 'bearer ' + getAccessToken(),
             },

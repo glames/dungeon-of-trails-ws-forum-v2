@@ -63,6 +63,7 @@ const NotificationComponent = () => {
 
       const response = await axios.get(apiUrl, {
         headers: {
+          'Access-Control-Allow-Origin': '*',
           Authorization: `bearer ${accessToken}`, // Đính kèm Authentication Header
         },
         params: {

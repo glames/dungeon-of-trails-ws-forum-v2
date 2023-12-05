@@ -48,6 +48,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       'GraphQL-preflight': 1,
+      'Access-Control-Allow-Origin': '*',
       authorization: `bearer ${token}`,
     },
   };

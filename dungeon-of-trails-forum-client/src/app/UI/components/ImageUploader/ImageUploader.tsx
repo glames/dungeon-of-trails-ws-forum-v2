@@ -56,6 +56,7 @@ export const ImageUploader: React.FC<{
           formData,
           {
             headers: {
+              'Access-Control-Allow-Origin': '*',
               Authorization: `bearer ${getAccessToken()}`,
               'Content-Type': 'multipart/form-data', // Đảm bảo đặt Content-Type đúng cho việc gửi FormData
             },
