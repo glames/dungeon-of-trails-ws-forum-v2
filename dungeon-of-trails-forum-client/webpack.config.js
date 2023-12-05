@@ -7,7 +7,7 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
   config.plugins.push(new Dotenv());
   config.output = {
     filename: '[name].bundle.js',
-    path: path.resolve('dist'), // Use an absolute path
+    path: path.resolve('build'), // Use an absolute path
   };
   console.log('HIHI' + path.resolve('build'));
   // Disable CSS minification
