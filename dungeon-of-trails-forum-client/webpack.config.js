@@ -9,7 +9,7 @@ module.exports = composePlugins(withNx(), withReact(), (config) => {
     filename: '[name].bundle.js',
     path: path.resolve('dist'), // Use an absolute path
   };
-  console.log('HIHI' + path.resolve('dist'));
+  console.log('HIHI' + path.resolve('build'));
   // Disable CSS minification
   config.optimization.minimize = false;
   return config;
