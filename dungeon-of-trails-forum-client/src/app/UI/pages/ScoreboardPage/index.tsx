@@ -24,7 +24,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ScoreboardPage = () => {
-  const { data, loading, error } = useGetGameScoreQuery();
+  const { data, loading, error } = useGetGameScoreQuery({
+    fetchPolicy: 'no-cache',
+  });
   const navigate = useNavigate();
 
   return (

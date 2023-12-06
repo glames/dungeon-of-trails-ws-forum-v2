@@ -106,10 +106,18 @@ const UserPostListPage = () => {
     },
   ];
 
-  const { data: datalist, loading, error, refetch } = useGetUserPostListQuery();
+  const {
+    data: datalist,
+    loading,
+    error,
+    refetch,
+  } = useGetUserPostListQuery({
+    fetchPolicy: 'no-cache',
+  });
   const { data: postData, refetch: fetchPost } = useGetUserPostDetailQuery({
     variables: { postId: postToView },
     skip: postToView == '',
+    fetchPolicy: 'no-cache',
   });
 
   const navigate = useNavigate();

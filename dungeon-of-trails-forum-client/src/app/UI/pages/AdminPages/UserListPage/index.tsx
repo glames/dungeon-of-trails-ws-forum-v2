@@ -104,7 +104,14 @@ const UserListPage = () => {
     },
   ];
 
-  const { data: datalist, loading, error, refetch } = useGetUserListQuery();
+  const {
+    data: datalist,
+    loading,
+    error,
+    refetch,
+  } = useGetUserListQuery({
+    fetchPolicy: 'no-cache',
+  });
   const navigate = useNavigate();
 
   const [searchData, setSearchData] = useState(dataCol);

@@ -7,7 +7,9 @@ const useToken = () => {
   const [isValid, setIsValid] = useState(false);
   const [isQueryComplete, setIsQueryComplete] = useState(false);
 
-  const { data, error } = useSignInWithTokenQuery();
+  const { data, error } = useSignInWithTokenQuery({
+    fetchPolicy: 'no-cache',
+  });
 
   useEffect(() => {
     if (data !== undefined) {

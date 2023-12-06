@@ -38,6 +38,7 @@ const SearchPage = () => {
     variables: {
       seachData: searchData,
     },
+    fetchPolicy: 'no-cache',
   });
   const pageOptions = Array.from(
     {

@@ -22,7 +22,7 @@ const NotificationComponent = () => {
     fetchNotifications();
 
     const client = new HubConnectionBuilder()
-      .withUrl('https://localhost:7138/myHub') // Địa chỉ Hub bạn đã cấu hình trong ASP.NET API
+      .withUrl('http://gateway.ap-southeast-1.elasticbeanstalk.com/myHub') // Địa chỉ Hub bạn đã cấu hình trong ASP.NET API
       .withAutomaticReconnect() // Tự động kết nối lại nếu mất kết nối
       .build();
 
@@ -56,7 +56,8 @@ const NotificationComponent = () => {
 
   const fetchNotifications = async () => {
     const email = getUserEmail();
-    const apiUrl = 'https://localhost:7138/GetAllNotificationsByEmail';
+    const apiUrl =
+      'https://jphm-cors-anywhere.onrender.com/http://gateway.ap-southeast-1.elasticbeanstalk.com/notifications/GetAllNotificationsByEmail';
 
     try {
       const accessToken = getAccessToken();
@@ -78,7 +79,8 @@ const NotificationComponent = () => {
   };
 
   const seenAll = async () => {
-    const apiUrl = 'https://localhost:7138/SetSeenAllNotificationsByEmail';
+    const apiUrl =
+      'https://jphm-cors-anywhere.onrender.com/http://gateway.ap-southeast-1.elasticbeanstalk.com/notifications/SetSeenAllNotificationsByEmail';
 
     try {
       const accessToken = getAccessToken();

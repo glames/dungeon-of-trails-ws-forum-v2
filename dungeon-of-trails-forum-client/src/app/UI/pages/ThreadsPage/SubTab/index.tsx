@@ -49,6 +49,7 @@ const HotPostTab: React.FC<PostTabProps> = ({ threadName }) => {
     variables: {
       thread: threadName,
     },
+    fetchPolicy: 'no-cache',
   });
   const nav = useNavigate();
   const indexOfLastPost = currentPage * postsPerPage;
@@ -145,6 +146,8 @@ const NewestPostTab: React.FC<PostTabProps> = ({ threadName }) => {
 
   const { data: newestPosts, refetch } = useGetThreadPostsQuery({
     variables: { thread: threadName },
+
+    fetchPolicy: 'no-cache',
   });
 
   const indexOfLastPost = currentPage * postsPerPage;
