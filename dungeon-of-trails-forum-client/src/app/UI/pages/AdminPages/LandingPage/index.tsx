@@ -39,7 +39,7 @@ const AdminLandingPage = () => {
 
         // Replace 'your-api-endpoint' with the actual endpoint URL
         const response = await axios.post(
-          `https://jphm-cors-anywhere.onrender.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/graphql/UpdateGameFile/${os}`,
+          `https://jphm-cors-anywhere.onrender.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/UpdateGameFile/${os}`,
           formData,
           {
             headers: {
