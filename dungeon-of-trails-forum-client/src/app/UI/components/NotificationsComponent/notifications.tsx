@@ -23,7 +23,12 @@ const NotificationComponent = () => {
 
     const client = new HubConnectionBuilder()
       .withUrl(
-        'https://dungeonoftrialsnotificationsapi-dev.eba-hm8cinx9.ap-southeast-1.dev4f.site/myHub'
+        'https://dungeonoftrialsnotificationsapi-dev.eba-hm8cinx9.ap-southeast-1.dev4f.site/myHub',
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
       ) // Địa chỉ Hub bạn đã cấu hình trong ASP.NET API
       .withAutomaticReconnect() // Tự động kết nối lại nếu mất kết nối
       .build();
