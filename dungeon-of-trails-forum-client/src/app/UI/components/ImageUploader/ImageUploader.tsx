@@ -52,7 +52,7 @@ export const ImageUploader: React.FC<{
 
         // Thay thế URL bằng địa chỉ endpoint của bạn
         const response = await axios.post(
-          'https://jphm-cors-anywhere.onrender.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/https://localhost:7244/ChangeAvatar',
+          'https://jphm-cors-anywhere.onrender.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/ChangeAvatar',
           formData,
           {
             headers: {
@@ -64,7 +64,6 @@ export const ImageUploader: React.FC<{
         );
 
         if (response.data == null || response.status !== 200) {
-          
         }
 
         window.location.reload();
