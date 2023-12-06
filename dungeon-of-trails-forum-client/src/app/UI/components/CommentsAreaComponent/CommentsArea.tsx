@@ -125,27 +125,18 @@ const CommentsArea = (props: any) => {
     setHiddenReplies(commentIds);
   }, [comments]);
 
-  const [isUnmounted, setIsUnmounted] = useState(false);
-  useEffect(() => {
-    return () => {
-      setIsUnmounted(true);
-    };
-  }, []);
-
   const editorConfig = {
     height: 300,
   };
   return (
     <div>
       <h3>Leave Your Comments Here:</h3>
-      {isUnmounted && (
-        <Editor
-          apiKey="jioaerqaehwh4wq0klpujtl4rxoxmeb4uid27hive9k014n2"
-          value={commentEditorContent}
-          onEditorChange={handleCommentEditorChange}
-          init={{ editorConfig, menubar: false }}
-        />
-      )}
+      <Editor
+        apiKey="jioaerqaehwh4wq0klpujtl4rxoxmeb4uid27hive9k014n2"
+        value={commentEditorContent}
+        onEditorChange={handleCommentEditorChange}
+        init={{ editorConfig, menubar: false }}
+      />
 
       <button className={styles.SubmitComment} onClick={handleSubmitComment}>
         Submit Comment
