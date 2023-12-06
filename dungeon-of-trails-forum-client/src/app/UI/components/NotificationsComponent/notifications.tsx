@@ -22,7 +22,9 @@ const NotificationComponent = () => {
     fetchNotifications();
 
     const client = new HubConnectionBuilder()
-      .withUrl('http://gateway.ap-southeast-1.elasticbeanstalk.com/myHub') // Địa chỉ Hub bạn đã cấu hình trong ASP.NET API
+      .withUrl(
+        'http://dungeonoftrialsnotificationsapi-dev.eba-hm8cinx9.ap-southeast-1.elasticbeanstalk.com/myHub'
+      ) // Địa chỉ Hub bạn đã cấu hình trong ASP.NET API
       .withAutomaticReconnect() // Tự động kết nối lại nếu mất kết nối
       .build();
 
