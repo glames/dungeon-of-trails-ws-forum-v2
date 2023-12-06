@@ -48,12 +48,17 @@ const UserPostListPage = () => {
       cell: (row: any) => (
         <div onClick={() => naviagate('/Posts/' + row.id)}>{row.title}</div>
       ),
-      width: '30%',
+      width: '50%',
+    },
+    {
+      name: 'Thread',
+      cell: (row: any) => row.thread.name,
+      width: '10%',
     },
     {
       name: 'Posted user',
       cell: (row: any) => row.postedUser.name,
-      width: '30%',
+      width: '20%',
     },
     {
       name: 'Actions',
@@ -75,13 +80,16 @@ const UserPostListPage = () => {
           View Details
         </button>
       ),
-      width: '40%',
+      width: '20%',
     },
   ];
   const dataCol = [
     {
       id: '1',
       title: 'ákdskdk',
+      thread: {
+        name: '1',
+      },
       postedUser: {
         name: '1',
       },
@@ -89,6 +97,9 @@ const UserPostListPage = () => {
     {
       id: '2',
       title: 'title',
+      thread: {
+        name: '1',
+      },
       postedUser: {
         name: '1',
       },
@@ -168,7 +179,7 @@ const UserPostListPage = () => {
               borderRadius: '3px',
               marginBottom: '10px',
             }}
-            placeholder="    Search user with name"
+            placeholder="    Search post with title"
           ></input>
         </div>
         <DataTable

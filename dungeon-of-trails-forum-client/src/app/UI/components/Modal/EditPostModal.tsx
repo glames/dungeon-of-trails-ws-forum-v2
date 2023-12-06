@@ -111,7 +111,6 @@ const EditPostModal = ({
           <div className={styles.modalContent}>
             <h2 className="text-center">Edit Post</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <br />
               <div className={styles.formGroup}>
                 <label htmlFor="postTitle">
                   <b>Title</b>
@@ -124,7 +123,6 @@ const EditPostModal = ({
                   {...register('postTitle')}
                 />
               </div>
-              <br />
               <div className={styles.formGroup}>
                 <label htmlFor="content">
                   <b>Body</b>
@@ -137,11 +135,9 @@ const EditPostModal = ({
                     setValue('content', content)
                   }
                   initialValue={currentContent || ''}
-                  init={
-                    {
-                      // ...
-                    }
-                  }
+                  init={{
+                    height: 300,
+                  }}
                 />
               </div>
               <br />

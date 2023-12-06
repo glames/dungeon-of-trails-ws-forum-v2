@@ -131,7 +131,6 @@ const UploadPostModal = ({ showUploadModal }: { showUploadModal: boolean }) => {
                   </option>
                 </select>
               </div>
-              <br />
               <div className={styles.formGroup}>
                 <label htmlFor="postTitle">
                   <b>Title</b>
@@ -144,7 +143,6 @@ const UploadPostModal = ({ showUploadModal }: { showUploadModal: boolean }) => {
                   {...register('postTitle')}
                 />
               </div>
-              <br />
               <div className={styles.formGroup}>
                 <label htmlFor="content">
                   <b>Body</b>
@@ -158,7 +156,7 @@ const UploadPostModal = ({ showUploadModal }: { showUploadModal: boolean }) => {
                   }
                   initialValue=""
                   init={{
-                    height: 300,
+                    height: 200,
                     menubar: false,
                     plugins: [
                       'advlist autolink lists link image charmap print preview anchor',
