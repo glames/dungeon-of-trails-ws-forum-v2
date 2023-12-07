@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Form, Row } from 'reactstrap';
 import { X } from 'react-feather';
 import { IMenu } from '~/app/models/menu.model';
+import styles from './index.module.scss';
 import LeftBar from './LeftBar';
 import Rightbar from './RightBar';
 import { MENUITEMS } from '../Sidebar/menu';
@@ -55,10 +56,69 @@ const Header = () => {
     document.querySelector('.Typeahead-menu')?.classList.remove('is-open');
     document.body.className = ``;
   };
+  const openCloseSidebar = () => {
+    //Do something click is outside specified element
+    const pageHeader = document.querySelector('.page-header');
+    const sidebarWrapper = document.querySelector('.sidebar-wrapper');
+
+    // Kiểm tra xem có classes 'close_icon' hay không trước khi loại bỏ
+    if (pageHeader && pageHeader.classList.contains('close_icon')) {
+      pageHeader.classList.remove('close_icon');
+    } else if (pageHeader) {
+      pageHeader.classList.add('close_icon');
+    }
+    if (
+      sidebarWrapper?.classList.contains('close_icon') &&
+      !sidebarWrapper.classList.contains('close_icon_mobile')
+    ) {
+      sidebarWrapper.classList.add('close_icon_mobile');
+      sidebarWrapper.classList.add('mobile');
+    } else {
+      if (
+        sidebarWrapper &&
+        sidebarWrapper.classList.contains('close_icon_mobile')
+      ) {
+        sidebarWrapper.classList.remove('close_icon_mobile');
+        sidebarWrapper.classList.remove('close_icon');
+        const computedStyle = window.getComputedStyle(
+          sidebarWrapper as HTMLElement
+        );
+        if (computedStyle.display === 'none') {
+          (sidebarWrapper as HTMLElement).style.display = 'block';
+        }
+      } else if (sidebarWrapper) {
+        sidebarWrapper.classList.add('close_icon_mobile');
+        sidebarWrapper.classList.add('close_icon');
+        sidebarWrapper.classList.add('mobile');
+      }
+    }
+  };
+
+  const sidebarWrapper = document.querySelector('.sidebar-wrapper');
+
+  if (sidebarWrapper) {
+    sidebarWrapper.classList.add('close_icon_mobile');
+  }
 
   return (
     <div className="page-header">
       <Row className="header-wrapper m-0">
+        <div
+          className={styles.headerHambuger}
+          style={{
+            position: 'absolute',
+            top: '-0px',
+            left: '93px',
+            zIndex: 9999,
+          }}
+          onClick={() => openCloseSidebar()}
+        >
+          <img
+            src="/assets/images/hamburger.png"
+            alt="Menu icon"
+            style={{ width: '40px' }}
+          />
+        </div>
         <Form className="form-inline search-full" action="#" method="get">
           <div className="form-group w-100">
             <div className="Typeahead Typeahead--twitterUsers">

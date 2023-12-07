@@ -182,19 +182,43 @@ const Sidebar = () => {
     // (document.querySelector(".sidebar-link") as HTMLElement)?.classList.add("active");
     // (document.querySelector(".bg-overlay1") as HTMLElement)?.classList.add("active")
   };
-
+  const pageHeader = document.querySelector('.page-header');
+  const sidebarWrapper = document.querySelector('.sidebar-wrapper');
   const openCloseSidebar = (toggle: boolean) => {
-    if (toggle) {
-      setSidebartoogle(!toggle);
-      document.querySelector('.page-header')!.className =
-        'page-header close_icon';
-      document.querySelector('.sidebar-wrapper')!.className =
-        'sidebar-wrapper close_icon ';
-    } else {
-      setSidebartoogle(!toggle);
-      document.querySelector('.page-header')!.className = 'page-header';
-      document.querySelector('.sidebar-wrapper')!.className =
-        'sidebar-wrapper ';
+    setSidebartoogle(!toggle);
+    if (sidebarWrapper && sidebarWrapper.classList.contains('close_icon')) {
+      sidebarWrapper.classList.remove('close_icon');
+    } else if (sidebarWrapper) {
+      sidebarWrapper.classList.add('close_icon');
+    }
+    if (sidebarWrapper?.classList.contains('close_icon_mobile')) {
+      sidebarWrapper.classList.remove('close_icon_mobile');
+      (sidebarWrapper as HTMLElement).style.display = 'none';
+    } else if (sidebarWrapper && sidebarWrapper.classList.contains('mobile')) {
+      sidebarWrapper.classList.add('close_icon_mobile');
+      (sidebarWrapper as HTMLElement).style.display = 'none';
+    }
+  };
+
+  // ...
+
+  // ...
+
+  const setPageHeaderClass = (newClass: string) => {
+    if (pageHeader && pageHeader.classList.contains('close_icon')) {
+      pageHeader.classList.remove('close_icon');
+    }
+    if (pageHeader) {
+      pageHeader.className = newClass;
+    }
+  };
+
+  const setSidebarWrapperClass = (newClass: string) => {
+    if (sidebarWrapper && sidebarWrapper.classList.contains('close_icon')) {
+      sidebarWrapper.classList.remove('close_icon');
+    }
+    if (sidebarWrapper) {
+      sidebarWrapper.className = newClass;
     }
   };
 
@@ -213,7 +237,9 @@ const Sidebar = () => {
           closeOverlay();
         }}
       ></div>
-      <div className="sidebar-wrapper" id="sidebar-wrapper">
+
+      <div className={`sidebar-wrapper close_icon`} id="sidebar-wrapper">
+        {''}
         <div className="logo-wrapper">
           <div className="userinfo-cont">
             <div
@@ -237,9 +263,7 @@ const Sidebar = () => {
               {getUserName()}
             </div>
           </div>
-          <div className="back-btn" onClick={() => responsiveSidebar()}>
-            <i className="fa fa-angle-left"></i>
-          </div>
+
           <div
             className="toggle-sidebar"
             onClick={() => openCloseSidebar(sidebartoogle)}

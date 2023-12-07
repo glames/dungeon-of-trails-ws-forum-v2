@@ -37,18 +37,18 @@ const LeftBar = (props: any) => {
       const isClickMainNavElement = ignoreClick_On_Main_Nav_Element?.contains(
         event.target as Node
       );
-      if (
-        window.innerWidth <= 991 &&
-        !isClickOutSideElement &&
-        !isClickMainNavElement &&
-        document.getElementById('sidebar-wrapper')
-      ) {
-        //Do something click is outside specified element
-        (document.querySelector('.page-header') as HTMLElement)!.className =
-          'page-header close_icon';
-        (document.querySelector('.sidebar-wrapper') as HTMLElement)!.className =
-          'sidebar-wrapper close_icon ';
-      }
+      // if (
+      //   window.innerWidth <= 991 &&
+      //   !isClickOutSideElement &&
+      //   !isClickMainNavElement &&
+      //   document.getElementById('sidebar-wrapper')
+      // ) {
+      //   //Do something click is outside specified element
+      //   (document.querySelector('.page-header') as HTMLElement)!.className =
+      //     'page-header close_icon';
+      //   (document.querySelector('.sidebar-wrapper') as HTMLElement)!.className =
+      //     'sidebar-wrapper close_icon ';
+      // }
     });
   }, [width]);
 

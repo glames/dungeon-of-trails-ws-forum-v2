@@ -1164,8 +1164,8 @@
   // left sidebar css
   &.compact-wrapper {
     .page-header {
-      margin-left: 280px;
-      width: calc(100% - 280px);
+      margin-left: 0;
+      width: 100%;
 
       &.close_icon {
         margin-left: 90px;
@@ -3229,7 +3229,7 @@
 ==========================**/
 
 @media screen and (max-width: 800px) {
-  .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper {
+  .sidebar-wrapper {
     display: none;
   }
   h1 {
