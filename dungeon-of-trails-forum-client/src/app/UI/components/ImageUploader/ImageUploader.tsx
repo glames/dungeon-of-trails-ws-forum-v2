@@ -52,7 +52,7 @@ export const ImageUploader: React.FC<{
 
         // Thay thế URL bằng địa chỉ endpoint của bạn
         const response = await axios.post(
-          'https://jphm-cors-anywhere.onrender.com/http://dungeonoftrialsapiservice-dev.eba-de5bcp3p.ap-southeast-1.elasticbeanstalk.com/ChangeAvatar',
+          'https://dungeon-of-trials-api.azurewebsites.net/ChangeAvatar',
           formData,
           {
             headers: {

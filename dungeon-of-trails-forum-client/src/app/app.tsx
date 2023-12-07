@@ -38,7 +38,7 @@ import ProtectedRoute from './UI/components/ProtectedRoute';
 import withAuthentication from './UI/components/WithAuthenticationComponent';
 
 const httpLink = createHttpLink({
-  uri: `https://jphm-cors-anywhere.onrender.com/http://gateway.ap-southeast-1.elasticbeanstalk.com/graphql`,
+  uri: `https://dungeon-of-trials-gateway-api.azurewebsites.net/graphql`,
   fetch,
 });
 

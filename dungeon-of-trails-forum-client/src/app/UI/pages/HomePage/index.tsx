@@ -93,13 +93,13 @@ const HomePage = () => {
         <strong>Available On</strong>
       </h2>
       <div className={styles.availableOn}>
-        <a href="https://dungeon-of-trials-s3.s3.ap-southeast-1.amazonaws.com/GameFiles/Dungeon_of_Trials_Game_Windows.zip">
+        <a href="https://phu-s3.s3.ap-southeast-1.amazonaws.com/GameFiles/Dungeon_of_Trials_Game_Windows.zip">
           <img
             src="/assets/images/banner/windows-button-download.png"
             alt="Get On App Store"
           />
         </a>
-        <a href="https://dungeon-of-trials-s3.s3.ap-southeast-1.amazonaws.com/GameFiles/Dungeon_of_Trials_Game_Android.apk">
+        <a href="https://phu-s3.s3.ap-southeast-1.amazonaws.com/GameFiles/Dungeon_of_Trials_Game_Android.apk">
           <img
             src="/assets/images/banner/download-for-android.png"
             alt="Get On Google Play Store"

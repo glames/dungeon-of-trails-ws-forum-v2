@@ -23,7 +23,7 @@ const NotificationComponent = () => {
 
     const client = new HubConnectionBuilder()
       .withUrl(
-        'https://dungeonoftrialsnotificationsapi-dev.eba-hm8cinx9.ap-southeast-1.dev4f.site/myHub',
+        'https://dungeon-of-trials-notifications-api.azurewebsites.net/myHub',
         {
           headers: {
             'Access-Control-Allow-Origin': '*',
@@ -64,7 +64,7 @@ const NotificationComponent = () => {
   const fetchNotifications = async () => {
     const email = getUserEmail();
     const apiUrl =
-      'https://jphm-cors-anywhere.onrender.com/http://gateway.ap-southeast-1.elasticbeanstalk.com/notifications/GetAllNotificationsByEmail';
+      'https://dungeon-of-trials-notifications-api.azurewebsites.net/GetAllNotificationsByEmail';
 
     try {
       const accessToken = getAccessToken();
@@ -87,7 +87,7 @@ const NotificationComponent = () => {
 
   const seenAll = async () => {
     const apiUrl =
-      'https://jphm-cors-anywhere.onrender.com/http://gateway.ap-southeast-1.elasticbeanstalk.com/notifications/SetSeenAllNotificationsByEmail';
+      'https://dungeon-of-trials-notifications-api.azurewebsites.net/SetSeenAllNotificationsByEmail';
 
     try {
       const accessToken = getAccessToken();

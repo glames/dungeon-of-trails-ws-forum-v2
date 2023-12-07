@@ -110,6 +110,7 @@ const Header = () => {
             top: '20px',
             left: '10px',
             zIndex: 9999,
+            width: '60px',
           }}
           onClick={() => openCloseSidebar()}
         >
