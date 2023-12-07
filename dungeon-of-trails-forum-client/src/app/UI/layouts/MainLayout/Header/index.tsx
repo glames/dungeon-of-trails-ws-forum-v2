@@ -107,8 +107,8 @@ const Header = () => {
           className={styles.headerHambuger}
           style={{
             position: 'absolute',
-            top: '-0px',
-            left: '93px',
+            top: '20px',
+            left: '10px',
             zIndex: 9999,
           }}
           onClick={() => openCloseSidebar()}
