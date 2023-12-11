@@ -38,14 +38,13 @@ jobs:
           cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
           pwd dir
           zip release.zip ./build/* -r
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        run: |
           cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
           dir
           cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2
           dir
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3          
         with:
           name: node-app
           path: /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client/release.zip
