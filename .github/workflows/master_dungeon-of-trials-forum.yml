@@ -33,18 +33,11 @@ jobs:
           pwd
           dir
 
-      - name: Zip artifact for deployment
-        run: |
-          cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
-          pwd
-          dir
-          zip release.zip ./build/* -r
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3          
         with:
           name: node-app
-          path: /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client/release.zip
+          path: /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client/build
 
   deploy:
     runs-on: ubuntu-latest
@@ -58,9 +51,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
