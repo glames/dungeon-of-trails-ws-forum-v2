@@ -87,10 +87,6 @@ const UserPostTab: React.FC<PostTabProps> = ({ hotPosts, avatar }) => {
                     <div className={styles.postedDate}>
                       {formatPostedAt(post.postedAt)}
                     </div>
-                    <div className={styles.commentCount}>
-                      {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
-                      <FontAwesomeIcon icon={faCommentDots} />{' '}
-                    </div>
                   </div>
                 </div>
               </li>

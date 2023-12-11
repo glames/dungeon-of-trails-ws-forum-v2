@@ -71,3 +71,12 @@
   color: black;
   margin-top: 10px;
 }
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: 1rem;
+  }
+  .postedDate {
+    font-size: 1rem;
+  }
+}

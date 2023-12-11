@@ -96,11 +96,14 @@ const HotPostTab: React.FC<PostTabProps> = ({ threadName }) => {
                 </div>
                 <div className={styles.postInfo}>
                   <div className={styles.author}>
-                    Author: {post.postedUser.name} -
+                    Author: {post.postedUser.name}
                   </div>
+                  <br />
                   <div className={styles.postedDate}>
                     {formatPostedAt(post.postedAt)}
                   </div>
+                </div>
+                <div className={styles.infoCount}>
                   <div className={styles.commentCount}>
                     {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
                     <FontAwesomeIcon icon={faCommentDots} />{' '}
@@ -196,11 +199,14 @@ const NewestPostTab: React.FC<PostTabProps> = ({ threadName }) => {
                 </div>
                 <div className={styles.postInfo}>
                   <div className={styles.author}>
-                    Author: {post.postedUser.name} -
+                    Author: {post.postedUser.name}
                   </div>
+                  <br />
                   <div className={styles.postedDate}>
                     {formatPostedAt(post.postedAt)}
                   </div>
+                </div>
+                <div className={styles.infoCount}>
                   <div className={styles.commentCount}>
                     {parseInt(post.totalComment) + parseInt(post.totalReply)}{' '}
                     <FontAwesomeIcon icon={faCommentDots} />{' '}
@@ -216,8 +222,6 @@ const NewestPostTab: React.FC<PostTabProps> = ({ threadName }) => {
           <NoData />
         )}
       </ul>
-
-      {/* Hiển thị phân trang */}
 
       <div className={styles.reloadButton} onClick={() => refetch()}>
         <FontAwesomeIcon icon={faRotateRight} />

@@ -113,3 +113,28 @@
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  .profile_avt {
+    width: 60%;
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .profile_page_cont {
+    width: 100%;
+    padding: 20px 0px;
+  }
+  .profile_upper div:nth-child(2) {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .profile_setting_cont {
+    right: 15px !important;
+  }
+  
+}
+

@@ -149,13 +149,13 @@ const UserPage = () => {
             className={`tab ${activeTab === 'post' ? 'active' : ''}`}
             onClick={() => handleTabChange('post')}
           >
-            Recent Posts
+            Posts
           </div>
           <div
             className={`tab ${activeTab === 'cmt' ? 'active' : ''}`}
             onClick={() => handleTabChange('cmt')}
           >
-            Recent Comments
+            Comments
           </div>
         </div>
         <div className="tab-content">
