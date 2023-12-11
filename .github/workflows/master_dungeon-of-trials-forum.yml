@@ -36,7 +36,8 @@ jobs:
       - name: Zip artifact for deployment
         run: |
           cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
-          pwd dir
+          pwd
+          dir
           zip release.zip ./build/* -r
           cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
           dir
