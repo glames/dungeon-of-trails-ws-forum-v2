@@ -1,0 +1,81 @@
+/**=====================
+     04. Loader CSS Start
+==========================**/
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: RGBA(255,255,255, 0.5);
+  z-index: 11;
+  top: 0;
+}
+
+
+.loader-box {
+  height: 150px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  transition: .3s color, .3s border, .3s transform, .3s opacity;
+
+  [class*="loader-"] {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    color: inherit;
+    vertical-align: middle;
+  }
+
+  .loader-15 {
+    background: $primary-color;
+    position: relative;
+    animation: loader-15 1s ease-in-out infinite;
+    animation-delay: 0.4s;
+    width: .25em;
+    height: .5em;
+    margin: 0 .5em;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      background: inherit;
+      animation: inherit;
+    }
+
+    &:before {
+      right: .5em;
+      animation-delay: 0.2s;
+    }
+
+    &:after {
+      left: .5em;
+      animation-delay: 0.6s;
+    }
+  }
+
+  @keyframes loader-15 {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 $info-color, 0 0 0 $primary-color;
+    }
+
+    50% {
+      box-shadow: 0 -.25em 0 $info-color, 0 .25em 0 $primary-color;
+    }
+  }
+}
+.loader-wrapper.loderhide {
+  display: none;
+}
+/**=====================
+     04. Loader CSS Ends
+==========================**/
