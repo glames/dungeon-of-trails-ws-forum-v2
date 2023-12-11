@@ -32,7 +32,7 @@ jobs:
         run: |
           pwd
           dir
-          zip release.zip ./dungeon-of-trails-forum-client/build/* -r
+          zip release.zip /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client/build/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
