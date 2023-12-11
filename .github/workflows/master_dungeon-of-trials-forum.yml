@@ -39,10 +39,6 @@ jobs:
           pwd
           dir
           zip release.zip ./build/* -r
-          cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-forum-client
-          dir
-          cd /home/runner/work/dungeon-of-trails-ws-forum-v2/dungeon-of-trails-ws-forum-v2
-          dir
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3          
