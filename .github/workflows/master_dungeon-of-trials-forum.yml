@@ -29,7 +29,9 @@ jobs:
           dir
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./dungeon-of-trails-forum-client/build* -r
+        run: |
+          pwd
+          zip release.zip dungeon-of-trails-forum-client/build/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
