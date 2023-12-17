@@ -4,7 +4,11 @@ import { useQuery, useMutation, gql } from '@apollo/client';
 import { Editor } from '@tinymce/tinymce-react';
 import styles from './commentsArea.module.scss';
 import { formatPostedAt } from '../../pages/ThreadsPage/SubTab';
-import { useAddCommentMutation } from '~/app/api-interaction/GraphQL/schema';
+import {
+  useAddCommentMutation,
+  useDeleteCommentMutation,
+} from '~/app/api-interaction/GraphQL/schema';
+import { getUserId } from '~/app/utils/local-storage';
 
 const CommentsArea = (props: any) => {
   const { comments, refetchComments } = props;
@@ -19,6 +23,7 @@ const CommentsArea = (props: any) => {
 
   const [addComment] = useAddCommentMutation();
   const [addReply] = useAddCommentMutation();
+  const [deleteComment] = useDeleteCommentMutation();
 
   const handleToggleReplies = (commentId: string) => {
     if (hiddenReplies.includes(commentId)) {
@@ -31,6 +36,35 @@ const CommentsArea = (props: any) => {
   const handleReply = (commentId: string) => {
     setHiddenReplies([...hiddenReplies, commentId]);
     setReplyEditorContent('');
+  };
+
+  const handleDeleteComment = (commentId: string) => {
+    deleteComment({
+      variables: { commentId: commentId },
+    })
+      .then(() => {
+        setHiddenReplies(hiddenReplies.filter((id) => id !== commentId));
+        setShowSuccessModal(true);
+        setSuccessMessage('Delete successful!');
+        setSuccessClass('success_msg');
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          setSuccessMessage('');
+          setSuccessClass('');
+        }, 2000);
+        refetchComments(); // Gọi callback refetchComments
+      })
+      .catch((error) => {
+        setShowSuccessModal(true);
+        setSuccessMessage('Delete failed! Please try again');
+        setSuccessClass('success_msg');
+        setTimeout(() => {
+          setShowSuccessModal(false);
+          setSuccessMessage('');
+          setSuccessClass('');
+        }, 2000);
+        console.error('Error submitting reply:', error);
+      });
   };
 
   const handleReplyEditorChange = (content: string) => {
@@ -143,100 +177,146 @@ const CommentsArea = (props: any) => {
       </button>
       <h3 className={styles.commentListTitle}>Comments List</h3>
       <div className={styles.CommentContainer}>
-        {comments.map((comment: any) => (
-          <div className={styles.EachComment} key={comment.id}>
-            <div className={styles.CommentInfoContainer}>
-              <div className={styles.AuthorAvtContainer}>
-                <img
-                  src={
-                    comment.commentUser.avatarUrl ||
-                    '/assets/images/avtar/default-avatar.png'
-                  }
-                  style={{ borderRadius: '50%' }}
-                  alt="avatar"
-                />
-              </div>
-              <div className={styles.CommentInfo}>
-                <div className={styles.PostAuthor}>
-                  <div>{comment.commentUser.name} ·&nbsp;</div>
-                </div>
-                <div>
-                  <i>{formatPostedAt(comment.commentTime)}</i>
-                </div>
-              </div>
-            </div>
-            <p
-              className={styles.commentBody}
-              dangerouslySetInnerHTML={{
-                __html: comment.body || '',
-              }}
-            ></p>
-            <button
-              className={styles.ShowReplyButton}
-              onClick={() => handleToggleReplies(comment.id)}
-            >
-              {hiddenReplies.includes(comment.id) ? 'Show' : 'Hide'}{' '}
-              {comment.inverseParent.length} Replies
-            </button>
-            {!hiddenReplies.includes(comment.id) && (
-              <div className={styles.ReplyContainer}>
-                {comment.inverseParent.map((reply: any) => (
-                  <div className={styles.EachReply} key={reply.id}>
-                    <div className={styles.CommentInfoContainer}>
-                      <div className={styles.AuthorAvtContainer}>
-                        <img
-                          src={
-                            reply.commentUser.avatarUrl ||
-                            '/assets/images/avtar/default-avatar.png'
-                          }
-                          style={{ borderRadius: '50%' }}
-                          alt="avatar"
-                        />
-                      </div>
-                      <div className={styles.CommentInfo}>
-                        <div className={styles.PostAuthor}>
-                          <div>{reply.commentUser.name} ·&nbsp;</div>
-                        </div>
-                        <div>
-                          <i>{formatPostedAt(reply.commentTime)}</i>
-                        </div>
-                      </div>
-                    </div>
-                    <p
-                      className={styles.commentBody}
-                      dangerouslySetInnerHTML={{
-                        __html: reply.body || '',
-                      }}
-                    ></p>
+        {comments.map(
+          (comment: any) =>
+            // Check if comment is not deleted before rendering
+            !comment.isDeleted && (
+              <div
+                className={styles.EachComment}
+                style={{ position: 'relative' }}
+                key={comment.id}
+              >
+                {comment.commentUser.id.toLowerCase() ==
+                  getUserId().toLowerCase() && (
+                  <div
+                    className={styles.DeleteCommentButton}
+                    style={{
+                      position: 'absolute',
+                      right: '10px',
+                      top: '-10px',
+                    }}
+                    onClick={() => handleDeleteComment(comment.id)}
+                  >
+                    X
                   </div>
-                ))}
-                <div className={styles.replyEditor}>
-                  <Editor
-                    apiKey="jioaerqaehwh4wq0klpujtl4rxoxmeb4uid27hive9k014n2"
-                    value={replyEditorContent}
-                    onEditorChange={handleReplyEditorChange}
-                    init={{
-                      height: 200,
-                      plugins: [],
-                      toolbar:
-                        'undo redo | formatselect | bold italic backcolor | \
+                )}
+
+                <div className={styles.CommentInfoContainer}>
+                  <div className={styles.AuthorAvtContainer}>
+                    <img
+                      src={
+                        comment.commentUser.avatarUrl ||
+                        '/assets/images/avtar/default-avatar.png'
+                      }
+                      style={{ borderRadius: '50%' }}
+                      alt="avatar"
+                    />
+                  </div>
+                  <div className={styles.CommentInfo}>
+                    <div className={styles.PostAuthor}>
+                      <div>{comment.commentUser.name} ·&nbsp;</div>
+                    </div>
+                    <div>
+                      <i>{formatPostedAt(comment.commentTime)}</i>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  className={styles.commentBody}
+                  dangerouslySetInnerHTML={{
+                    __html: comment.body || '',
+                  }}
+                ></p>
+                <button
+                  className={styles.ShowReplyButton}
+                  onClick={() => handleToggleReplies(comment.id)}
+                >
+                  {hiddenReplies.includes(comment.id) ? 'Show' : 'Hide'}{' '}
+                  {comment.inverseParent.length} Replies
+                </button>
+                {!hiddenReplies.includes(comment.id) && (
+                  <div className={styles.ReplyContainer}>
+                    {comment.inverseParent.map(
+                      (reply: any) =>
+                        // Check if reply is not deleted before rendering
+                        !reply.isDeleted && (
+                          <div
+                            className={styles.EachReply}
+                            style={{ position: 'relative' }}
+                            key={reply.id}
+                          >
+                            {reply.commentUser.id.toLowerCase() ==
+                              getUserId().toLowerCase() && (
+                              <div
+                                onClick={() => handleDeleteComment(reply.id)}
+                                className={styles.DeleteCommentButton}
+                                style={{
+                                  position: 'absolute',
+                                  right: '10px',
+                                  top: '-10px',
+                                }}
+                              >
+                                X
+                              </div>
+                            )}
+                            <div className={styles.CommentInfoContainer}>
+                              <div className={styles.AuthorAvtContainer}>
+                                <img
+                                  src={
+                                    reply.commentUser.avatarUrl ||
+                                    '/assets/images/avtar/default-avatar.png'
+                                  }
+                                  style={{ borderRadius: '50%' }}
+                                  alt="avatar"
+                                />
+                              </div>
+                              <div className={styles.CommentInfo}>
+                                <div className={styles.PostAuthor}>
+                                  <div>{reply.commentUser.name} ·&nbsp;</div>
+                                </div>
+                                <div>
+                                  <i>{formatPostedAt(reply.commentTime)}</i>
+                                </div>
+                              </div>
+                            </div>
+                            <p
+                              className={styles.commentBody}
+                              dangerouslySetInnerHTML={{
+                                __html: reply.body || '',
+                              }}
+                            ></p>
+                          </div>
+                        )
+                    )}
+                    <div className={styles.replyEditor}>
+                      <Editor
+                        apiKey="jioaerqaehwh4wq0klpujtl4rxoxmeb4uid27hive9k014n2"
+                        value={replyEditorContent}
+                        onEditorChange={handleReplyEditorChange}
+                        init={{
+                          height: 200,
+                          plugins: [],
+                          toolbar:
+                            'undo redo | formatselect | bold italic backcolor | \
           alignleft aligncenter alignright alignjustify | \
           bullist numlist outdent indent | removeformat | help',
-                    }}
-                  />
-                  <button
-                    className={styles.submitReply}
-                    onClick={() => handleSubmitReply(comment.id)}
-                  >
-                    Submit Reply
-                  </button>
-                </div>
+                        }}
+                      />
+                      <button
+                        className={styles.submitReply}
+                        onClick={() => handleSubmitReply(comment.id)}
+                      >
+                        Submit Reply
+                      </button>
+                    </div>
+                  </div>
+                )}
+                <hr />
               </div>
-            )}
-            <hr />
-          </div>
-        ))}
+            )
+        )}
       </div>
+
       {showSuccessModal && (
         <div className={`${styles.success_modal} ${successClass}`}>
           <div className={styles.success_modal_content}>

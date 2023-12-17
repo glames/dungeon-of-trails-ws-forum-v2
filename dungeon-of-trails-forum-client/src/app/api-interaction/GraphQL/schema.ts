@@ -83,6 +83,7 @@ export type MutationHandlerDao = {
   AddComment?: Maybe<Scalars['String']['output']>;
   ChangeAvatar?: Maybe<Scalars['String']['output']>;
   ChangePassword?: Maybe<Scalars['String']['output']>;
+  DeleteComment?: Maybe<Scalars['String']['output']>;
   DeletePost?: Maybe<Scalars['String']['output']>;
   DeleteUser?: Maybe<Scalars['String']['output']>;
   DeleteUserPost?: Maybe<Scalars['String']['output']>;
@@ -93,7 +94,6 @@ export type MutationHandlerDao = {
   UserLogin?: Maybe<LoginOutput>;
   UserRegister?: Maybe<Scalars['String']['output']>;
   VotePost?: Maybe<Scalars['String']['output']>;
-  deleteComment: Scalars['String']['output'];
   editProfile: Scalars['String']['output'];
   test?: Maybe<Scalars['String']['output']>;
 };
@@ -116,6 +116,11 @@ export type MutationHandlerDaoChangeAvatarArgs = {
 export type MutationHandlerDaoChangePasswordArgs = {
   link?: InputMaybe<Scalars['String']['input']>;
   newPassword?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationHandlerDaoDeleteCommentArgs = {
+  commentId?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -176,11 +181,6 @@ export type MutationHandlerDaoUserRegisterArgs = {
 
 export type MutationHandlerDaoVotePostArgs = {
   postId?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationHandlerDaoDeleteCommentArgs = {
-  commentId: Scalars['String']['input'];
 };
 
 
@@ -382,6 +382,13 @@ export type ChangePasswordMutationVariables = Exact<{
 
 export type ChangePasswordMutation = { __typename?: 'MutationHandlerDAO', ChangePassword?: string | null };
 
+export type DeleteCommentMutationVariables = Exact<{
+  commentId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type DeleteCommentMutation = { __typename?: 'MutationHandlerDAO', DeleteComment?: string | null };
+
 export type DeletePostMutationVariables = Exact<{
   postId?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -483,7 +490,7 @@ export type GetPostDetailQueryVariables = Exact<{
 }>;
 
 
-export type GetPostDetailQuery = { __typename?: 'QueryHandlerDAO', GetPostDetail?: { __typename?: 'Post', id: any, title: string, body: string, attachmentUrl?: string | null, score?: number | null, totalComment?: number | null, totalReply?: number | null, postedAt?: any | null, totalPostVote?: number | null, postedUser?: { __typename?: 'User', id: any, name: string, email?: string | null, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null, thread: { __typename?: 'Thread', id: any, name: string, description?: string | null }, comments?: Array<{ __typename?: 'Comment', id: any, body: string, parentId?: any | null, commentTime: any, commentUser?: { __typename?: 'User', id: any, name: string, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null, inverseParent?: Array<{ __typename?: 'Comment', id: any, body: string, parentId?: any | null, commentTime: any, commentUser?: { __typename?: 'User', id: any, name: string, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null } | null> | null } | null> | null } | null };
+export type GetPostDetailQuery = { __typename?: 'QueryHandlerDAO', GetPostDetail?: { __typename?: 'Post', id: any, title: string, body: string, attachmentUrl?: string | null, score?: number | null, totalComment?: number | null, totalReply?: number | null, postedAt?: any | null, totalPostVote?: number | null, postedUser?: { __typename?: 'User', id: any, name: string, email?: string | null, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null, thread: { __typename?: 'Thread', id: any, name: string, description?: string | null }, comments?: Array<{ __typename?: 'Comment', id: any, body: string, parentId?: any | null, commentTime: any, isDeleted?: boolean | null, commentUser?: { __typename?: 'User', id: any, name: string, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null, inverseParent?: Array<{ __typename?: 'Comment', id: any, body: string, parentId?: any | null, commentTime: any, isDeleted?: boolean | null, commentUser?: { __typename?: 'User', id: any, name: string, description?: string | null, gender?: number | null, avatarUrl?: string | null } | null } | null> | null } | null> | null } | null };
 
 export type GetThreadHotPostsQueryVariables = Exact<{
   thread?: InputMaybe<Scalars['String']['input']>;
@@ -608,6 +615,37 @@ export function useChangePasswordMutation(baseOptions?: Apollo.MutationHookOptio
 export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
 export type ChangePasswordMutationResult = Apollo.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = Apollo.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export const DeleteCommentDocument = gql`
+    mutation DeleteComment($commentId: String) {
+  DeleteComment(commentId: $commentId)
+}
+    `;
+export type DeleteCommentMutationFn = Apollo.MutationFunction<DeleteCommentMutation, DeleteCommentMutationVariables>;
+
+/**
+ * __useDeleteCommentMutation__
+ *
+ * To run a mutation, you first call `useDeleteCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCommentMutation, { data, loading, error }] = useDeleteCommentMutation({
+ *   variables: {
+ *      commentId: // value for 'commentId'
+ *   },
+ * });
+ */
+export function useDeleteCommentMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommentMutation, DeleteCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCommentMutation, DeleteCommentMutationVariables>(DeleteCommentDocument, options);
+      }
+export type DeleteCommentMutationHookResult = ReturnType<typeof useDeleteCommentMutation>;
+export type DeleteCommentMutationResult = Apollo.MutationResult<DeleteCommentMutation>;
+export type DeleteCommentMutationOptions = Apollo.BaseMutationOptions<DeleteCommentMutation, DeleteCommentMutationVariables>;
 export const DeletePostDocument = gql`
     mutation DeletePost($postId: String) {
   DeletePost(postId: $postId)
@@ -1050,6 +1088,7 @@ export const GetPostDetailDocument = gql`
       body
       parentId
       commentTime
+      isDeleted
       commentUser {
         id
         name
@@ -1062,6 +1101,7 @@ export const GetPostDetailDocument = gql`
         body
         parentId
         commentTime
+        isDeleted
         commentUser {
           id
           name

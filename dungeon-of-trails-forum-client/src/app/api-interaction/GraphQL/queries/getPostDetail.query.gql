@@ -27,6 +27,7 @@ query GetPostDetail($postId: String, $commentPageNo: Int) {
       body
       parentId
       commentTime
+      isDeleted
       commentUser {
         id
         name
@@ -39,6 +40,7 @@ query GetPostDetail($postId: String, $commentPageNo: Int) {
         body
         parentId
         commentTime
+        isDeleted
         commentUser {
           id
           name
